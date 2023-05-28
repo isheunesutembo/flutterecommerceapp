@@ -48,7 +48,7 @@ class Products_Widget extends ConsumerWidget {
                       Stack(
                         children: [
                           Image.network(
-                            data[index].image,
+                            data[index].image!,
                             fit: BoxFit.fitHeight,
                             height: 150,
                             width: double.infinity,
@@ -74,7 +74,7 @@ class Products_Widget extends ConsumerWidget {
                       ),
                       Center(
                           child: Text(
-                        data[index].name,
+                        data[index].name!,
                         style: const TextStyle(
                             fontSize: 20,
                             color: Colors.black,

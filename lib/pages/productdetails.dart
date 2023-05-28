@@ -26,7 +26,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             Stack(
               children: [
                 Image.network(
-                  product.image,
+                  product.image!,
                   height: 250,
                   width: double.infinity,
                   fit: BoxFit.cover,
@@ -67,7 +67,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             ),
             Center(
               child: Text(
-                product.name,
+                product.name!,
                 style: const TextStyle(
                     color: Colors.grey,
                     fontSize: 25,
@@ -81,7 +81,7 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Text(
-                  product.description,
+                  product.description!,
                   style: const TextStyle(
                       color: Colors.black,
                       fontSize: 15,
@@ -114,35 +114,25 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             const SizedBox(
               height: 32,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                Padding(
+           
+                const Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    "Related Products",
-                    style: TextStyle(
-                        color: Colors.grey,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500),
+                  child: Center(
+                    child: Text(
+                      "Similar Products",
+                      style: TextStyle(
+                          color: Colors.grey,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500),
+                    ),
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.all(8.0),
-                  child: Text(
-                    "See All",
-                    style: TextStyle(
-                        color: Colors.blue,
-                        fontSize: 15,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-              ],
-            ),
+             
+              
             const SizedBox(
               height: 16,
             ),
-          //  const RelatedProducts()
+            RelatedProducts(categoryname: product.categoryname.toString())
           ],
         ),
       ),

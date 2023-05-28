@@ -4,13 +4,12 @@ import 'package:ephamarcy/core/failure.dart';
 import 'package:ephamarcy/models/product.dart';
 import 'package:ephamarcy/providers/firebaseproviders/firebaseproviders.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/foundation.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
 
-final productsServiceProvider=Provider((ref){
+final productsServiceProvider = Provider((ref) {
   return ProductService(firestore: ref.watch(firebaseFirestoreProvider));
-  
 });
 
 class ProductService {
@@ -24,7 +23,8 @@ class ProductService {
 
   Either<dynamic, Future<void>> addProduct(Product product) {
     try {
-      return right(_products.doc(product.productId.toString()).set(product.toJson()));
+      return right(
+          _products.doc(product.productId.toString()).set(product.toJson()));
     } on FirebaseException catch (e) {
       throw e.message!;
     } catch (e) {
@@ -35,27 +35,23 @@ class ProductService {
   Stream<List<Product>> getProducts() {
     return _products.snapshots().map((event) {
       List<Product> products = [];
-      
+
       for (var doc in event.docs) {
-        products.add(Product.fromMap(doc.data()as Map<String,dynamic>));
-       
+        products.add(Product.fromJson(doc.data() as Map<String, dynamic>));
       }
 
       return products;
     });
   }
 
-  
-
-
-  Stream<Product>getProductById(String productId){
-    return _products.doc(productId).snapshots()
-    .map((event) => Product.fromMap((event.data() as Map<String, dynamic>)));
-
+  Stream<Product> getProductById(String productId) {
+    return _products.doc(productId).snapshots().map(
+        (event) => Product.fromJson((event.data() as Map<String, dynamic>)));
   }
 
-  Stream<List<Product>>searchProducts(String query){
-    return _products.where(
+  Stream<List<Product>> searchProducts(String query) {
+    return _products
+        .where(
           'name',
           isGreaterThanOrEqualTo: query.isEmpty ? 0 : query,
           isLessThan: query.isEmpty
@@ -64,23 +60,51 @@ class ProductService {
                   String.fromCharCode(
                     query.codeUnitAt(query.length - 1) + 1,
                   ),
-        ).snapshots().map((event) {
-          List<Product>products=[];
-          for (var product in event.docs){
-            products.add(Product.fromMap(product.data()as Map<String,dynamic>));
-
-          }
-          return products;
-        });
-
+        )
+        .snapshots()
+        .map((event) {
+      List<Product> products = [];
+      for (var product in event.docs) {
+        products.add(Product.fromJson(product.data() as Map<String, dynamic>));
+      }
+      return products;
+    });
   }
-   Either<dynamic, Future<void>> updateProduct(Product product) {
+
+  Either<dynamic, Future<void>> updateProduct(Product product) {
     try {
-      return right(_products.doc(product.productId.toString()).update(product.toMap()));
+      return right(
+          _products.doc(product.productId.toString()).update(product.toJson()));
     } on FirebaseException catch (e) {
       throw e.message!;
     } catch (e) {
       return left(Failure(message: e.toString()));
     }
+  }
+
+  Stream<List<Product>> getProductsByCategoryName(String categoryname) {
+    return _products
+        .where("categoryname", isEqualTo: categoryname)
+        .snapshots()
+        .map((event) {
+      List<Product> products = [];
+      for (var doc in event.docs) {
+        products.add(Product.fromJson(doc.data() as Map<String, dynamic>));
+      }
+      return products;
+    });
+  }
+
+  Stream<List<Product>>getRelatedProducts(String categoryname){
+     return _products
+        .where("categoryname", isEqualTo: categoryname)
+        .snapshots()
+        .map((event) {
+      List<Product> products = [];
+      for (var doc in event.docs) {
+        products.add(Product.fromJson(doc.data() as Map<String, dynamic>));
+      }
+      return products;
+    });
   }
 }

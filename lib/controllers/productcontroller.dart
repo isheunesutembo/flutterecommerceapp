@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:ephamarcy/models/product.dart';
 import 'package:ephamarcy/services/productservice.dart';
 import 'package:ephamarcy/services/storageservice.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -22,8 +21,19 @@ final productsControllerProvider =
 final getProductsProvider = StreamProvider(
     (ref) => ref.watch(productsControllerProvider.notifier).getProducts());
 
+final getProductByCategoryNameProvider =
+    StreamProvider.family((ref, String categoryname) {
+  return ref
+      .watch(productsControllerProvider.notifier)
+      .getProductByCategoryName(categoryname);
+});
 
-
+final relatedProductsProvider =
+    StreamProvider.family((ref, String categoryname) {
+  return ref
+      .watch(productsControllerProvider.notifier)
+      .getRelatedProducts(categoryname);
+});
 
 class ProductController extends StateNotifier<bool> {
   final ProductService _productService;
@@ -42,10 +52,23 @@ class ProductController extends StateNotifier<bool> {
     return _productService.getProducts();
   }
 
- 
-  void createProduct(BuildContext context, File? file, String name,
-      String description, double price, double oldprice,String categoryname) async {
-    String productId = Uuid().v1();
+  Stream<List<Product>> getProductByCategoryName(String categoryname) {
+    return _productService.getProductsByCategoryName(categoryname);
+  }
+
+  Stream<List<Product>> getRelatedProducts(String categoryname) {
+    return _productService.getRelatedProducts(categoryname);
+  }
+
+  void createProduct(
+      BuildContext context,
+      File? file,
+      String name,
+      String description,
+      double price,
+      double oldprice,
+      String categoryname) async {
+    String productId = const Uuid().v1();
     final imageRes = await _storageService.storeFile(
       path: "products/",
       id: productId,
@@ -53,16 +76,19 @@ class ProductController extends StateNotifier<bool> {
     );
 
     imageRes.fold((l) => Fluttertoast.showToast(msg: l.message), (r) async {
-       final product =Product(productId: productId,image:r.toString(),
-       name: name,description: description,price: price,oldprice: oldprice,categoryname:categoryname  );
-       final res=await _productService.addProduct(product);
-       state=false;
-       res.fold((l) => Fluttertoast.showToast(msg: l.message), (r) {
+      final product = Product(
+          productId: productId,
+          image: r.toString(),
+          name: name,
+          description: description,
+          price: price,
+          oldprice: oldprice,
+          categoryname: categoryname);
+      final res = await _productService.addProduct(product);
+      state = false;
+      res.fold((l) => Fluttertoast.showToast(msg: l.message), (r) {
         Fluttertoast.showToast(msg: "Product uploaded successfully");
-        
-       });
+      });
     });
-
-    
   }
 }

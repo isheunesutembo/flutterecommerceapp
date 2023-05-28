@@ -5,12 +5,14 @@ class UserModel {
   String uid;
   String? firstname;
   String? lastname;
+  String? city;
   String? address;
   String? profileImage;
   UserModel({
     required this.uid,
     this.firstname,
     this.lastname,
+    this.city,
     this.address,
     this.profileImage,
   });
@@ -19,6 +21,7 @@ class UserModel {
     String? uid,
     String? firstname,
     String? lastname,
+    String? city,
     String? address,
     String? profileImage,
   }) {
@@ -26,6 +29,7 @@ class UserModel {
       uid: uid ?? this.uid,
       firstname: firstname ?? this.firstname,
       lastname: lastname ?? this.lastname,
+      city: city ?? this.city,
       address: address ?? this.address,
       profileImage: profileImage ?? this.profileImage,
     );
@@ -36,6 +40,7 @@ class UserModel {
       'uid': uid,
       'firstname': firstname,
       'lastname': lastname,
+      'city': city,
       'address': address,
       'profileImage': profileImage,
     };
@@ -46,9 +51,9 @@ class UserModel {
       uid: map['uid'] as String,
       firstname: map['firstname'] != null ? map['firstname'] as String : null,
       lastname: map['lastname'] != null ? map['lastname'] as String : null,
+      city: map['city'] != null ? map['city'] as String : null,
       address: map['address'] != null ? map['address'] as String : null,
-      profileImage:
-          map['profileImage'] != null ? map['profileImage'] as String : null,
+      profileImage: map['profileImage'] != null ? map['profileImage'] as String : null,
     );
   }
 
@@ -59,26 +64,29 @@ class UserModel {
 
   @override
   String toString() {
-    return 'UserModel(uid: $uid, firstname: $firstname, lastname: $lastname, address: $address, profileImage: $profileImage)';
+    return 'UserModel(uid: $uid, firstname: $firstname, lastname: $lastname, city: $city, address: $address, profileImage: $profileImage)';
   }
 
   @override
   bool operator ==(covariant UserModel other) {
     if (identical(this, other)) return true;
-
-    return other.uid == uid &&
-        other.firstname == firstname &&
-        other.lastname == lastname &&
-        other.address == address &&
-        other.profileImage == profileImage;
+  
+    return 
+      other.uid == uid &&
+      other.firstname == firstname &&
+      other.lastname == lastname &&
+      other.city == city &&
+      other.address == address &&
+      other.profileImage == profileImage;
   }
 
   @override
   int get hashCode {
     return uid.hashCode ^
-        firstname.hashCode ^
-        lastname.hashCode ^
-        address.hashCode ^
-        profileImage.hashCode;
+      firstname.hashCode ^
+      lastname.hashCode ^
+      city.hashCode ^
+      address.hashCode ^
+      profileImage.hashCode;
   }
 }

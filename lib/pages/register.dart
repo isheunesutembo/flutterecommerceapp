@@ -32,6 +32,7 @@ class _RegisterState extends ConsumerState<Register> {
         : Scaffold(
             appBar: AppBar(
               elevation: 0,
+              iconTheme: Theme.of(context).iconTheme,
               backgroundColor: Colors.white,
             ),
             body: SafeArea(

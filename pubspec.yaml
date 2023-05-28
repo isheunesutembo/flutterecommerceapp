@@ -42,6 +42,8 @@ dependencies:
   fluttertoast: ^8.1.2
   routemaster: ^1.0.1
   uuid: ^3.0.7
+  json_annotation: ^4.5.0
+  freezed: ^2.3.2
   
 
 dev_dependencies:
@@ -54,6 +56,8 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
+  build_runner: ^2.1.11
+  json_serializable: ^6.2.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
