@@ -1,12 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ephamarcy/constants/firebase_constants.dart';
 import 'package:ephamarcy/core/failure.dart';
-import 'package:ephamarcy/models/favourite.dart';
 import 'package:ephamarcy/models/product.dart';
-import 'package:ephamarcy/pages/favourites.dart';
 import 'package:ephamarcy/providers/firebaseproviders/firebaseproviders.dart';
 import 'package:firebase_core/firebase_core.dart';
-
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
 
@@ -35,7 +32,7 @@ class ProductService {
   }
 
   Stream<List<Product>> getProducts() {
-    return _products.snapshots().map((event) {
+    return _products.limit(10).snapshots().map((event) {
       List<Product> products = [];
 
       for (var doc in event.docs) {
