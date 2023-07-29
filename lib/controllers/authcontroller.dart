@@ -4,7 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 
 final authControllerProvider =
     StateNotifierProvider<AuthController, bool>((ref) => AuthController(
@@ -39,7 +39,7 @@ class AuthController extends StateNotifier<bool> {
     final user = await _authService.signInWithEmailAndPassword(email, password);
     state = false;
     user.fold(
-        (failure) => Fluttertoast.showToast(msg: failure.message),
+        (failure) => ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text(failure.message) )),
         (userModel) =>
             _ref.read(userProvider.notifier).update((state) => userModel));
   }
@@ -50,7 +50,7 @@ class AuthController extends StateNotifier<bool> {
     final user = await _authService.signUpWithEmailAndPassword(email, password);
     state = false;
     user.fold(
-        (failure) => Fluttertoast.showToast(msg: failure.message),
+        (failure) => ScaffoldMessenger.of(context).showSnackBar(SnackBar(content:Text(failure.message) )),
         (userModel) =>
             _ref.read(userProvider.notifier).update((state) => userModel));
   }

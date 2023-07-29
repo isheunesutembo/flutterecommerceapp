@@ -31,9 +31,9 @@ class AuthService {
         _firebaseStorage = firebaseStorage;
   CollectionReference get _users =>
       _firestore.collection(FirebaseConstants.usersCollection);
-
+ 
   Stream<User?> get authStateChange => _firebaseAuth.authStateChanges();
-
+  User? user =FirebaseAuth.instance.currentUser;
   late UserModel _userModel;
 
   FutureEither<UserModel> signInWithEmailAndPassword(

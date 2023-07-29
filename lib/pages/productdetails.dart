@@ -1,20 +1,62 @@
 
+import 'package:ephamarcy/controllers/cartcontroller.dart';
+import 'package:ephamarcy/controllers/favouriteproductcontroller.dart';
+import 'package:ephamarcy/core/utils.dart';
 import 'package:ephamarcy/models/product.dart';
 import 'package:ephamarcy/pages/relatedproducts.dart';
+import 'package:ephamarcy/services/cartservice.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class ProductDetailsPage extends StatefulWidget {
+class ProductDetailsPage extends ConsumerStatefulWidget {
   const ProductDetailsPage({super.key});
 
   @override
-  State<ProductDetailsPage> createState() => _ProductDetailsPageState();
+  ConsumerState<ProductDetailsPage> createState() => _ProductDetailsPageState();
 }
 
-class _ProductDetailsPageState extends State<ProductDetailsPage> {
+class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
+  bool _isFavourite=false;
+  Product? product;
+  @override
+  
   @override
   Widget build(BuildContext context) {
+    bool _isFavourite=false;
     final product = ModalRoute.of(context)!.settings.arguments as Product;
+    
+    final cart=ref.watch(cartControllerProvider.notifier);
     return Scaffold(
+      appBar: AppBar(
+        iconTheme: Theme.of(context).iconTheme,
+        elevation: 0,
+        backgroundColor: Colors.white,
+        actions: [
+           Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [
+            
+                  GestureDetector(
+                      onTap: (){
+                         ref.watch(cartControllerProvider.notifier).addproduct(product);
+                         showSnackBar(context, "Added to Cart");
+                      },
+                      child:Stack(
+                        children: [
+                          const Icon(
+                            Icons.shopping_cart,
+                            color: Colors.blue,
+                            size: 25,
+                          ),
+                          Positioned(top: -2,right: -2,child: Text("${cart.products.length}",style:const TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),))
+                        ],
+                      ),
+                    ),
+                 IconButton(onPressed:(){
+                  ref.read(favouritesControllerProvider.notifier).toggleFavouriteStatus(_isFavourite, product);
+                 },icon:Icon( _isFavourite? Icons.favorite:Icons.favorite_outline,size: 30,))
+                
+           ],)
+        ],
+      ),
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
@@ -23,45 +65,15 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
             const SizedBox(
               height: 50,
             ),
-            Stack(
-              children: [
+            
                 Image.network(
                   product.image!,
                   height: 250,
                   width: double.infinity,
                   fit: BoxFit.cover,
                 ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.pop(context);
-                  },
-                  child: const Positioned(
-                      top: 10,
-                      left: 10,
-                      child: Icon(
-                        Icons.arrow_back,
-                        size: 25,
-                        color: Colors.black,
-                      )),
-                ),
-                const Positioned(
-                    top: 10,
-                    right: 10,
-                    child: Icon(
-                      Icons.shopping_basket,
-                      color: Colors.blue,
-                      size: 25,
-                    )),
-                const Positioned(
-                    top: 10,
-                    right: 60,
-                    child: Icon(
-                      Icons.favorite,
-                      color: Colors.blue,
-                      size: 25,
-                    ))
-              ],
-            ),
+               
+              
             const SizedBox(
               height: 20,
             ),
@@ -109,7 +121,11 @@ class _ProductDetailsPageState extends State<ProductDetailsPage> {
                   width: 250,
                   height: 50,
                   child: ElevatedButton(
-                      onPressed: () {}, child: Text("Add To Cart"))),
+                      onPressed: () {
+                         ref.read(cartControllerProvider.notifier).addproduct(product);
+                         showSnackBar(context, "Added to Cart");
+                        
+                      }, child: Text("Add To Cart"))),
             ),
             const SizedBox(
               height: 32,

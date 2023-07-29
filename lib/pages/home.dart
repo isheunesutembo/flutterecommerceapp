@@ -1,20 +1,23 @@
 
-import 'package:ephamarcy/pages/cart_page.dart';
+
+import 'package:ephamarcy/controllers/cartcontroller.dart';
+import 'package:ephamarcy/pages/cartpage.dart';
 import 'package:ephamarcy/pages/favourites.dart';
 import 'package:ephamarcy/pages/mainpage.dart';
 import 'package:ephamarcy/pages/profilepage.dart';
 import 'package:ephamarcy/widgets/categories_widgets.dart';
 import 'package:ephamarcy/widgets/products_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class Home extends StatefulWidget {
+class Home extends ConsumerStatefulWidget {
   Home({Key? key}) : super(key: key);
 
   @override
-  State<Home> createState() => _HomeState();
+  ConsumerState<Home> createState() => _HomeState();
 }
 
-class _HomeState extends State<Home> {
+class _HomeState extends ConsumerState<Home> {
   int selectedIndex=0;
   void _onItemTap(int index){
     setState(() {
@@ -23,29 +26,31 @@ class _HomeState extends State<Home> {
   }
 
   List<Widget>pages=[
-    MainPage(),
-    FavouritesPage(),
-    CartPage(),
+   const MainPage(),
+   const FavouritesPage(),
+   const CartPage(),
     ProfilePage()
   ];
   @override
   Widget build(BuildContext context) {
+    final cart=ref.watch(cartControllerProvider.notifier);
     
     return Scaffold(
+      
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
         currentIndex: selectedIndex,
         selectedItemColor: Colors.blue,
         onTap: _onItemTap
-        ,items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
+        ,items:  <BottomNavigationBarItem>[
+            const BottomNavigationBarItem(
                 icon: Icon(
                   Icons.home,
                   color: Colors.blue,
                   size: 30,
                 ),
                 label: "Home"),
-            BottomNavigationBarItem(
+          const  BottomNavigationBarItem(
                 icon: Icon(
                   Icons.favorite,
                   color: Colors.blue,
@@ -53,13 +58,18 @@ class _HomeState extends State<Home> {
                 ),
                 label: "Favourites"),
             BottomNavigationBarItem(
-                icon: Icon(
-                  Icons.shopping_bag_outlined,
-                  color: Colors.blue,
-                  size: 30,
+                icon: Stack(
+                  children: [
+                const    Icon(
+                      Icons.shopping_cart_rounded,
+                      color: Colors.blue,
+                      size: 30,
+                    ),
+                    Positioned(top: -3,right: -1,child: Text("${cart.products.length}",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),))
+                  ],
                 ),
                 label: "Cart"),
-            BottomNavigationBarItem(
+          const  BottomNavigationBarItem(
                 icon: Icon(
                   Icons.person,
                   color: Colors.blue,

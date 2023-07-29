@@ -5,7 +5,7 @@ import 'package:ephamarcy/services/productservice.dart';
 import 'package:ephamarcy/services/storageservice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:fluttertoast/fluttertoast.dart';
+
 import 'package:uuid/uuid.dart';
 
 final productsControllerProvider =
@@ -34,6 +34,9 @@ final relatedProductsProvider =
       .watch(productsControllerProvider.notifier)
       .getRelatedProducts(categoryname);
 });
+final searchProducts = StreamProvider.family((ref, String search) {
+  return ref.watch(productsControllerProvider.notifier).searchProducts(search);
+});
 
 class ProductController extends StateNotifier<bool> {
   final ProductService _productService;
@@ -56,6 +59,10 @@ class ProductController extends StateNotifier<bool> {
     return _productService.getProductsByCategoryName(categoryname);
   }
 
+  Stream<List<Product>> searchProducts(String search) {
+    return _productService.searchProducts(search);
+  }
+
   Stream<List<Product>> getRelatedProducts(String categoryname) {
     return _productService.getRelatedProducts(categoryname);
   }
@@ -75,7 +82,9 @@ class ProductController extends StateNotifier<bool> {
       file: file,
     );
 
-    imageRes.fold((l) => Fluttertoast.showToast(msg: l.message), (r) async {
+    imageRes.fold(
+        (l) => ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text(l.message))), (r) async {
       final product = Product(
           productId: productId,
           image: r.toString(),
@@ -86,8 +95,11 @@ class ProductController extends StateNotifier<bool> {
           categoryname: categoryname);
       final res = await _productService.addProduct(product);
       state = false;
-      res.fold((l) => Fluttertoast.showToast(msg: l.message), (r) {
-        Fluttertoast.showToast(msg: "Product uploaded successfully");
+      res.fold(
+          (l) => ScaffoldMessenger.of(context)
+              .showSnackBar(SnackBar(content: Text(l.message))), (r) {
+        ScaffoldMessenger.of(context).showSnackBar(
+            const SnackBar(content: Text("product uploaded successfully")));
       });
     });
   }

@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ephamarcy/constants/firebase_constants.dart';
 import 'package:ephamarcy/core/failure.dart';
+import 'package:ephamarcy/models/favourite.dart';
 import 'package:ephamarcy/models/product.dart';
+import 'package:ephamarcy/pages/favourites.dart';
 import 'package:ephamarcy/providers/firebaseproviders/firebaseproviders.dart';
 import 'package:firebase_core/firebase_core.dart';
 
@@ -49,26 +51,20 @@ class ProductService {
         (event) => Product.fromJson((event.data() as Map<String, dynamic>)));
   }
 
-  Stream<List<Product>> searchProducts(String query) {
+  Stream<List<Product>> searchProducts(String search) {
     return _products
-        .where(
-          'name',
-          isGreaterThanOrEqualTo: query.isEmpty ? 0 : query,
-          isLessThan: query.isEmpty
-              ? null
-              : query.substring(0, query.length - 1) +
-                  String.fromCharCode(
-                    query.codeUnitAt(query.length - 1) + 1,
-                  ),
-        )
+        .orderBy("name")
+        .startAt([search])
+        .endAt([search + '\uf8ff'])
+        .limit(10)
         .snapshots()
         .map((event) {
-      List<Product> products = [];
-      for (var product in event.docs) {
-        products.add(Product.fromJson(product.data() as Map<String, dynamic>));
-      }
-      return products;
-    });
+          List<Product> products = [];
+          for (var doc in event.docs) {
+            products.add(Product.fromJson(doc.data() as Map<String, dynamic>));
+          }
+          return products;
+        });
   }
 
   Either<dynamic, Future<void>> updateProduct(Product product) {
@@ -95,8 +91,8 @@ class ProductService {
     });
   }
 
-  Stream<List<Product>>getRelatedProducts(String categoryname){
-     return _products
+  Stream<List<Product>> getRelatedProducts(String categoryname) {
+    return _products
         .where("categoryname", isEqualTo: categoryname)
         .snapshots()
         .map((event) {
