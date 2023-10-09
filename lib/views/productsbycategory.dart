@@ -1,6 +1,6 @@
 import 'package:ephamarcy/controllers/productcontroller.dart';
 import 'package:ephamarcy/models/categories.dart';
-import 'package:ephamarcy/pages/productdetails.dart';
+import 'package:ephamarcy/views/productdetails.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -129,7 +129,7 @@ class ProductsByCategoryPage extends ConsumerWidget {
                                               "\$${data[index].oldprice}",
                                               style: const TextStyle(
                                                   fontSize: 18,
-                                                  color: Colors.blue,
+                                                  color: Colors.black,
                                                   fontWeight: FontWeight.w600,
                                                   decoration: TextDecoration
                                                       .lineThrough),

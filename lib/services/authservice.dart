@@ -3,12 +3,9 @@ import 'package:ephamarcy/constants/firebase_constants.dart';
 import 'package:ephamarcy/core/failure.dart';
 import 'package:ephamarcy/core/type_defs.dart';
 import 'package:ephamarcy/models/user.dart';
-import 'package:ephamarcy/pages/signin.dart';
 import 'package:ephamarcy/providers/firebaseproviders/firebaseproviders.dart';
-import 'package:ephamarcy/services/firebasestorageservice.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
 
@@ -31,9 +28,9 @@ class AuthService {
         _firebaseStorage = firebaseStorage;
   CollectionReference get _users =>
       _firestore.collection(FirebaseConstants.usersCollection);
- 
+
   Stream<User?> get authStateChange => _firebaseAuth.authStateChanges();
-  User? user =FirebaseAuth.instance.currentUser;
+  User? user = FirebaseAuth.instance.currentUser;
   late UserModel _userModel;
 
   FutureEither<UserModel> signInWithEmailAndPassword(
@@ -57,7 +54,7 @@ class AuthService {
           _userModel = UserModel(uid: _firebaseAuth.currentUser!.uid);
           await _users
               .doc(_firebaseAuth.currentUser!.uid)
-              .set(_userModel.toMap());
+              .set(_userModel.toJson());
         } else {
           _userModel = await getUserData(userCredential.user!.uid).first;
         }
@@ -75,6 +72,21 @@ class AuthService {
 
   Stream<UserModel> getUserData(uid) {
     return _users.doc(uid).snapshots().map(
-        (event) => UserModel.fromMap(event.data() as Map<String, dynamic>));
+        (event) => UserModel.fromJson(event.data() as Map<String, dynamic>));
+  }
+
+  
+  Either<dynamic,Future<void>>updateUser(UserModel user){
+    final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
+    User? currentuser = _firebaseAuth.currentUser;
+    final userId = currentuser!.uid.toString();
+    try{
+      return right(_users.doc(userId).update(user.toJson()));
+    }on FirebaseException catch (e) {
+      throw e.message!;
+    } catch (e) {
+      return left(Failure(message: e.toString()));
+    }
+
   }
 }

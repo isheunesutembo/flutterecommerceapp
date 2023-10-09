@@ -1,6 +1,6 @@
 import 'package:ephamarcy/common.dart/error.dart';
 import 'package:ephamarcy/controllers/categoriescontroller.dart';
-import 'package:ephamarcy/pages/productsbycategory.dart';
+import 'package:ephamarcy/views/productsbycategory.dart';
 import 'package:ephamarcy/widgets/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -27,24 +27,29 @@ class CategoriesWidget extends ConsumerWidget {
               onTap: (){
                 Navigator.push(context, MaterialPageRoute(builder: (context)=>ProductsByCategoryPage(),settings: RouteSettings(arguments: data[index])));
               },
-              child: Column(
-                  children: [
-                    Image.network(
-                        data[index].image.toString(),
-                        fit: BoxFit.cover,
-                        height: 60,
-                        width: 60,
-                      ),
-                    
-                    Text(
-                      data[index].name.toString(),
-                      style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 15,
-                          fontWeight: FontWeight.w600),
-                    )
-                  ],
-                ),
+              child: Container(
+                
+                decoration: BoxDecoration(borderRadius: BorderRadius.circular(20),
+                color: Colors.grey[200]),
+                child: Column(
+                    children: [
+                      Image.network(
+                          data[index].image.toString(),
+                          fit: BoxFit.cover,
+                          height: 60,
+                          width: 60,
+                        ),
+                      
+                      Text(
+                        data[index].name.toString(),
+                        style: const TextStyle(
+                            color: Colors.black,
+                            fontSize: 15,
+                            fontWeight: FontWeight.w600),
+                      )
+                    ],
+                  ),
+              ),
             ),
           );
          

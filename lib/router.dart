@@ -1,5 +1,5 @@
-import 'package:ephamarcy/pages/home.dart';
-import 'package:ephamarcy/pages/signin.dart';
+import 'package:ephamarcy/views/home.dart';
+import 'package:ephamarcy/views/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:routemaster/routemaster.dart';
 

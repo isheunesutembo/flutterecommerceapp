@@ -39,20 +39,20 @@ dependencies:
   cloud_firestore: ^4.3.1
   firebase_storage: ^11.0.10
   fpdart: ^0.4.0
- 
+  fluttertoast: ^8.2.2
   routemaster: ^1.0.1
   uuid: ^3.0.7
   json_annotation: ^4.5.0
   freezed: ^2.3.2
-  flutter_stripe: ^9.2.2
+  flutter_stripe: ^9.4.0
   flutter_dotenv: ^5.1.0
-  flutter_dash: ^1.0.0
   http: ^0.13.0
+  image_picker: ^1.0.4
+  flutter_dash: ^1.0.0
   flutter_paypal: ^0.2.0
-  flutter_inappwebview: ^5.7.2+3
   flutter_paypal_checkout: ^1.0.1
   http_auth: ^1.0.2
-  flutter_yookassa_sdk: ^0.1.2
+
   
   
 

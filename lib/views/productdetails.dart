@@ -3,8 +3,8 @@ import 'package:ephamarcy/controllers/cartcontroller.dart';
 import 'package:ephamarcy/controllers/favouriteproductcontroller.dart';
 import 'package:ephamarcy/core/utils.dart';
 import 'package:ephamarcy/models/product.dart';
-import 'package:ephamarcy/pages/relatedproducts.dart';
-import 'package:ephamarcy/services/cartservice.dart';
+import 'package:ephamarcy/views/relatedproducts.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -36,7 +36,7 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
             
                   GestureDetector(
                       onTap: (){
-                         ref.watch(cartControllerProvider.notifier).addproduct(product);
+                         ref.watch(cartControllerProvider.notifier).addProductToCart(product,context);
                          showSnackBar(context, "Added to Cart");
                       },
                       child:Stack(
@@ -46,7 +46,7 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
                             color: Colors.blue,
                             size: 25,
                           ),
-                          Positioned(top: -2,right: -2,child: Text("${cart.products.length}",style:const TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),))
+                         
                         ],
                       ),
                     ),
@@ -122,7 +122,7 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
                   height: 50,
                   child: ElevatedButton(
                       onPressed: () {
-                         ref.read(cartControllerProvider.notifier).addproduct(product);
+                         ref.read(cartControllerProvider.notifier).addProductToCart(product,context);
                          showSnackBar(context, "Added to Cart");
                         
                       }, child: Text("Add To Cart"))),

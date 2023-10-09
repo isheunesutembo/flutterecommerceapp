@@ -14,37 +14,44 @@ T _$identity<T>(T value) => value;
 final _privateConstructorUsedError = UnsupportedError(
     'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
-Order _$OrderFromJson(Map<String, dynamic> json) {
-  return _Order.fromJson(json);
+Orders _$OrdersFromJson(Map<String, dynamic> json) {
+  return _Orders.fromJson(json);
 }
 
 /// @nodoc
-mixin _$Order {
-  String get id => throw _privateConstructorUsedError;
-  double get amount => throw _privateConstructorUsedError;
-  Address get address => throw _privateConstructorUsedError;
-  List<Product> get products => throw _privateConstructorUsedError;
+mixin _$Orders {
+  AddressModel get address => throw _privateConstructorUsedError;
+  List<CartItem> get products => throw _privateConstructorUsedError;
+  double get total => throw _privateConstructorUsedError;
+  String get orderId => throw _privateConstructorUsedError;
+  String get orderStatus => throw _privateConstructorUsedError;
+  DateTime get date => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  $OrderCopyWith<Order> get copyWith => throw _privateConstructorUsedError;
+  $OrdersCopyWith<Orders> get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $OrderCopyWith<$Res> {
-  factory $OrderCopyWith(Order value, $Res Function(Order) then) =
-      _$OrderCopyWithImpl<$Res, Order>;
+abstract class $OrdersCopyWith<$Res> {
+  factory $OrdersCopyWith(Orders value, $Res Function(Orders) then) =
+      _$OrdersCopyWithImpl<$Res, Orders>;
   @useResult
   $Res call(
-      {String id, double amount, Address address, List<Product> products});
+      {AddressModel address,
+      List<CartItem> products,
+      double total,
+      String orderId,
+      String orderStatus,
+      DateTime date});
 
-  $AddressCopyWith<$Res> get address;
+  $AddressModelCopyWith<$Res> get address;
 }
 
 /// @nodoc
-class _$OrderCopyWithImpl<$Res, $Val extends Order>
-    implements $OrderCopyWith<$Res> {
-  _$OrderCopyWithImpl(this._value, this._then);
+class _$OrdersCopyWithImpl<$Res, $Val extends Orders>
+    implements $OrdersCopyWith<$Res> {
+  _$OrdersCopyWithImpl(this._value, this._then);
 
   // ignore: unused_field
   final $Val _value;
@@ -54,169 +61,217 @@ class _$OrderCopyWithImpl<$Res, $Val extends Order>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? amount = null,
     Object? address = null,
     Object? products = null,
+    Object? total = null,
+    Object? orderId = null,
+    Object? orderStatus = null,
+    Object? date = null,
   }) {
     return _then(_value.copyWith(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as double,
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as Address,
+              as AddressModel,
       products: null == products
           ? _value.products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<Product>,
+              as List<CartItem>,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as double,
+      orderId: null == orderId
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
+              as String,
+      orderStatus: null == orderStatus
+          ? _value.orderStatus
+          : orderStatus // ignore: cast_nullable_to_non_nullable
+              as String,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ) as $Val);
   }
 
   @override
   @pragma('vm:prefer-inline')
-  $AddressCopyWith<$Res> get address {
-    return $AddressCopyWith<$Res>(_value.address, (value) {
+  $AddressModelCopyWith<$Res> get address {
+    return $AddressModelCopyWith<$Res>(_value.address, (value) {
       return _then(_value.copyWith(address: value) as $Val);
     });
   }
 }
 
 /// @nodoc
-abstract class _$$_OrderCopyWith<$Res> implements $OrderCopyWith<$Res> {
-  factory _$$_OrderCopyWith(_$_Order value, $Res Function(_$_Order) then) =
-      __$$_OrderCopyWithImpl<$Res>;
+abstract class _$$_OrdersCopyWith<$Res> implements $OrdersCopyWith<$Res> {
+  factory _$$_OrdersCopyWith(_$_Orders value, $Res Function(_$_Orders) then) =
+      __$$_OrdersCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
-      {String id, double amount, Address address, List<Product> products});
+      {AddressModel address,
+      List<CartItem> products,
+      double total,
+      String orderId,
+      String orderStatus,
+      DateTime date});
 
   @override
-  $AddressCopyWith<$Res> get address;
+  $AddressModelCopyWith<$Res> get address;
 }
 
 /// @nodoc
-class __$$_OrderCopyWithImpl<$Res> extends _$OrderCopyWithImpl<$Res, _$_Order>
-    implements _$$_OrderCopyWith<$Res> {
-  __$$_OrderCopyWithImpl(_$_Order _value, $Res Function(_$_Order) _then)
+class __$$_OrdersCopyWithImpl<$Res>
+    extends _$OrdersCopyWithImpl<$Res, _$_Orders>
+    implements _$$_OrdersCopyWith<$Res> {
+  __$$_OrdersCopyWithImpl(_$_Orders _value, $Res Function(_$_Orders) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? id = null,
-    Object? amount = null,
     Object? address = null,
     Object? products = null,
+    Object? total = null,
+    Object? orderId = null,
+    Object? orderStatus = null,
+    Object? date = null,
   }) {
-    return _then(_$_Order(
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      amount: null == amount
-          ? _value.amount
-          : amount // ignore: cast_nullable_to_non_nullable
-              as double,
+    return _then(_$_Orders(
       address: null == address
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
-              as Address,
+              as AddressModel,
       products: null == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
-              as List<Product>,
+              as List<CartItem>,
+      total: null == total
+          ? _value.total
+          : total // ignore: cast_nullable_to_non_nullable
+              as double,
+      orderId: null == orderId
+          ? _value.orderId
+          : orderId // ignore: cast_nullable_to_non_nullable
+              as String,
+      orderStatus: null == orderStatus
+          ? _value.orderStatus
+          : orderStatus // ignore: cast_nullable_to_non_nullable
+              as String,
+      date: null == date
+          ? _value.date
+          : date // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
 
 /// @nodoc
 @JsonSerializable()
-class _$_Order implements _Order {
-  _$_Order(
-      {required this.id,
-      required this.amount,
-      required this.address,
-      required final List<Product> products})
+class _$_Orders implements _Orders {
+  _$_Orders(
+      {required this.address,
+      required final List<CartItem> products,
+      required this.total,
+      required this.orderId,
+      required this.orderStatus,
+      required this.date})
       : _products = products;
 
-  factory _$_Order.fromJson(Map<String, dynamic> json) =>
-      _$$_OrderFromJson(json);
+  factory _$_Orders.fromJson(Map<String, dynamic> json) =>
+      _$$_OrdersFromJson(json);
 
   @override
-  final String id;
+  final AddressModel address;
+  final List<CartItem> _products;
   @override
-  final double amount;
-  @override
-  final Address address;
-  final List<Product> _products;
-  @override
-  List<Product> get products {
+  List<CartItem> get products {
     if (_products is EqualUnmodifiableListView) return _products;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_products);
   }
 
   @override
+  final double total;
+  @override
+  final String orderId;
+  @override
+  final String orderStatus;
+  @override
+  final DateTime date;
+
+  @override
   String toString() {
-    return 'Order(id: $id, amount: $amount, address: $address, products: $products)';
+    return 'Orders(address: $address, products: $products, total: $total, orderId: $orderId, orderStatus: $orderStatus, date: $date)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Order &&
-            (identical(other.id, id) || other.id == id) &&
-            (identical(other.amount, amount) || other.amount == amount) &&
+            other is _$_Orders &&
             (identical(other.address, address) || other.address == address) &&
-            const DeepCollectionEquality().equals(other._products, _products));
+            const DeepCollectionEquality().equals(other._products, _products) &&
+            (identical(other.total, total) || other.total == total) &&
+            (identical(other.orderId, orderId) || other.orderId == orderId) &&
+            (identical(other.orderStatus, orderStatus) ||
+                other.orderStatus == orderStatus) &&
+            (identical(other.date, date) || other.date == date));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, id, amount, address,
-      const DeepCollectionEquality().hash(_products));
+  int get hashCode => Object.hash(
+      runtimeType,
+      address,
+      const DeepCollectionEquality().hash(_products),
+      total,
+      orderId,
+      orderStatus,
+      date);
 
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_OrderCopyWith<_$_Order> get copyWith =>
-      __$$_OrderCopyWithImpl<_$_Order>(this, _$identity);
+  _$$_OrdersCopyWith<_$_Orders> get copyWith =>
+      __$$_OrdersCopyWithImpl<_$_Orders>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_OrderToJson(
+    return _$$_OrdersToJson(
       this,
     );
   }
 }
 
-abstract class _Order implements Order {
-  factory _Order(
-      {required final String id,
-      required final double amount,
-      required final Address address,
-      required final List<Product> products}) = _$_Order;
+abstract class _Orders implements Orders {
+  factory _Orders(
+      {required final AddressModel address,
+      required final List<CartItem> products,
+      required final double total,
+      required final String orderId,
+      required final String orderStatus,
+      required final DateTime date}) = _$_Orders;
 
-  factory _Order.fromJson(Map<String, dynamic> json) = _$_Order.fromJson;
+  factory _Orders.fromJson(Map<String, dynamic> json) = _$_Orders.fromJson;
 
   @override
-  String get id;
+  AddressModel get address;
   @override
-  double get amount;
+  List<CartItem> get products;
   @override
-  Address get address;
+  double get total;
   @override
-  List<Product> get products;
+  String get orderId;
+  @override
+  String get orderStatus;
+  @override
+  DateTime get date;
   @override
   @JsonKey(ignore: true)
-  _$$_OrderCopyWith<_$_Order> get copyWith =>
+  _$$_OrdersCopyWith<_$_Orders> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -1,6 +1,5 @@
 import 'package:ephamarcy/controllers/authcontroller.dart';
-import 'package:ephamarcy/pages/signin.dart';
-import 'package:ephamarcy/services/authservice.dart';
+import 'package:ephamarcy/views/signin.dart';
 import 'package:ephamarcy/widgets/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

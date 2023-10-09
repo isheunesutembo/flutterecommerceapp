@@ -1,46 +1,46 @@
-import 'package:ephamarcy/core/utils.dart';
-import 'package:ephamarcy/models/cart.dart';
+
+import 'package:ephamarcy/models/cartitem.dart';
 import 'package:ephamarcy/models/product.dart';
 import 'package:ephamarcy/services/cartservice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-final cartControllerProvider=ChangeNotifierProvider((ref)=>
-CartController());
+final cartControllerProvider = StateNotifierProvider<CartController, bool>(
+    (ref) =>
+        CartController(cartService: ref.watch(cartServiceProvider), ref: ref));
 
-class CartController extends ChangeNotifier {
-  CartController() : super();
-   late Map<dynamic,dynamic> _products={};
-  get products => _products;
+class CartController extends StateNotifier<bool> {
+  final CartService _cartService;
+  final Ref _ref;
 
-  get productSubTotal => _products.entries
-      .map((product) => product.key.price * product.value)
-      .toList();
-  get productTotal => _products.entries
-      .map((product) => product.key.price * product.value)
-      .toList()
-      .reduce((value, element) => value + element)
-      .toStringAsFixed(2);
-      get quantity=>products.values.toList();
-      
-  Future<void> addproduct(Product product) async {
-    if (_products.containsKey(product)) {
-      _products[product] += 1;
-      notifyListeners();
-      
-    } else {
-      _products[product] = 1;
-      notifyListeners();
-    }
+  CartController({required CartService cartService, required Ref ref})
+      : _cartService = cartService,
+        _ref = ref,
+        super(false);
+
+  void addProductToCart(Product product, BuildContext context) {
+    _cartService.addProductToCart(product,context).fold(
+        (l) => ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(l.toString()))) ,
+        (r) => ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("${product.name} added to cart"))));
   }
 
-  Future<void> removeProduct(Product product) async {
-    if (_products.containsKey(product) && _products[product] == 1) {
-      _products.removeWhere((key, value) => key == _products);
-      notifyListeners();
-    } else {
-      _products = _products[product] -= 1;
-      notifyListeners();
-    }
+  void removeCartItem(CartItem item,BuildContext context){
+    _cartService.removeCartItem(item)
+    .fold((l) =>ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(l.toString()))) , (r) =>ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text("${item.name} removed from cart"))));
   }
+  void decreaseQuantity(CartItem item){
+    _cartService.decreaseQuantity(item);
+  }
+  void increaseQuantity(CartItem item){
+    _cartService.increaseQuantity(item);
+  }
+
+  Future<void>clearCart()async{
+    return _cartService.clearCart();
+  }
+
 }

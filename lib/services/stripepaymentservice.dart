@@ -1,9 +1,8 @@
 import 'dart:convert';
-
+import 'package:http/http.dart' as http;
 import 'package:ephamarcy/apikeys/apikey.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-import 'package:http/http.dart' as http;
 
 class StripePaymentService {
   Map<String, dynamic>? paymentIntent;
@@ -16,13 +15,17 @@ class StripePaymentService {
       await Stripe.instance
           .initPaymentSheet(
               paymentSheetParameters: SetupPaymentSheetParameters(
-            customFlow: true,
-            paymentIntentClientSecret:
-                paymentIntent!['client_secret'], //Gotten from payment intent
-            style: ThemeMode.dark,
-            merchantDisplayName: 'Isheunesu',
-          ))
-          .then((value) {});
+                  customFlow: true,
+                  paymentIntentClientSecret: paymentIntent![
+                      'client_secret'], //Gotten from payment intent
+                  style: ThemeMode.light,
+                  merchantDisplayName: 'Isheunesu',
+                  googlePay:
+                      const PaymentSheetGooglePay(merchantCountryCode: "US"),
+                  allowsDelayedPaymentMethods: true))
+          .then((value) {
+
+      });
 
       //STEP 3: Display Payment sheet
       displayPaymentSheet(context);
@@ -36,7 +39,7 @@ class StripePaymentService {
       //Request body
       Map<String, dynamic> body = {
         'amount': calculateAmount(amount),
-        'currency': currency,
+        'currency': currency
       };
 
       //Make post request to Stripe
@@ -48,6 +51,7 @@ class StripePaymentService {
         },
         body: body,
       );
+      if (response.statusCode == 200) {}
       return json.decode(response.body);
     } catch (err) {
       throw Exception(err.toString());
@@ -80,12 +84,12 @@ class StripePaymentService {
       });
     } on StripeException catch (e) {
       print('Error is:---> $e');
-      AlertDialog(
+      const AlertDialog(
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             Row(
-              children: const [
+              children: [
                 Icon(
                   Icons.cancel,
                   color: Colors.red,
@@ -102,7 +106,7 @@ class StripePaymentService {
   }
 
   calculateAmount(String amount) {
-    final calculatedAmout = (double.parse(amount)) * 100;
+    final calculatedAmout = (double.parse(amount) * 100).toInt();
     return calculatedAmout.toString();
   }
 }

@@ -2,7 +2,7 @@ import 'package:ephamarcy/common.dart/error.dart';
 import 'package:ephamarcy/controllers/cartcontroller.dart';
 import 'package:ephamarcy/controllers/productcontroller.dart';
 import 'package:ephamarcy/core/utils.dart';
-import 'package:ephamarcy/pages/productdetails.dart';
+import 'package:ephamarcy/views/productdetails.dart';
 import 'package:ephamarcy/widgets/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -129,7 +129,7 @@ class SearchProducts extends SearchDelegate {
                                         ref
                                             .watch(
                                                 cartControllerProvider.notifier)
-                                            .addproduct(product);
+                                            .addProductToCart(product,context);
                                         showSnackBar(context, "Added to Cart");
                                       },
                                       child: const Icon(
@@ -137,16 +137,7 @@ class SearchProducts extends SearchDelegate {
                                         color: Colors.blue,
                                         size: 30,
                                       )),
-                                  Positioned(
-                                      top: -3,
-                                      right: -1,
-                                      child: Text(
-                                        "${cart.products.length}",
-                                        style: const TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold),
-                                      ))
+                                  
                                 ],
                               )),
                           Positioned(
@@ -281,7 +272,7 @@ class SearchProducts extends SearchDelegate {
                                         ref
                                             .watch(
                                                 cartControllerProvider.notifier)
-                                            .addproduct(product);
+                                            .addProductToCart(product,context);
                                         showSnackBar(context, "Added to Cart");
                                       },
                                       child: const Icon(
@@ -289,16 +280,7 @@ class SearchProducts extends SearchDelegate {
                                         color: Colors.blue,
                                         size: 30,
                                       )),
-                                  Positioned(
-                                      top: -3,
-                                      right: -1,
-                                      child: Text(
-                                        "${cart.products.length}",
-                                        style: const TextStyle(
-                                            color: Colors.black,
-                                            fontSize: 15,
-                                            fontWeight: FontWeight.bold),
-                                      ))
+                                 
                                 ],
                               )),
                           Positioned(

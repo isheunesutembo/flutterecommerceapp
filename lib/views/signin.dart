@@ -1,11 +1,10 @@
 import 'package:ephamarcy/controllers/authcontroller.dart';
-import 'package:ephamarcy/pages/home.dart';
-import 'package:ephamarcy/pages/register.dart';
+import 'package:ephamarcy/views/home.dart';
+import 'package:ephamarcy/views/register.dart';
 import 'package:ephamarcy/widgets/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import '../services/authservice.dart';
 
 class SignIn extends ConsumerStatefulWidget {
   SignIn({super.key});

@@ -1,9 +1,9 @@
 import 'package:ephamarcy/controllers/cartcontroller.dart';
-import 'package:ephamarcy/pages/cartpage.dart';
+import 'package:ephamarcy/views/cartpage.dart';
 import 'package:ephamarcy/widgets/categories_widgets.dart';
-
 import 'package:ephamarcy/widgets/products_widget.dart';
 import 'package:ephamarcy/widgets/searchdelegate.dart';
+import 'package:ephamarcy/widgets/searchwidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -23,43 +23,33 @@ class MainPage extends ConsumerWidget {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => CartPage()));
                 },
-                child: Stack(
+                child:const Stack(
                   children: [
-                    const Icon(
+                     Icon(
                       Icons.shopping_cart_rounded,
                       color: Colors.black,
                     ),
-                    Positioned(
-                      right: -1,
-                      top: -4,
-                      child:  Text(
-                          "${cart.products.length}",
-                          style:const TextStyle(
-                              color: Colors.blue,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 15),
-                        ),
-                      
-                    ),
+                    
 
                   ],
                 )),
                 
                 
           ),
-         Padding(
-           padding: const EdgeInsets.all(8.0),
-           child: GestureDetector(onTap: (){
-           showSearch(context: context, delegate: SearchProducts(ref));
-           },child: const Icon(Icons.search,color: Colors.black,size: 30,)),
-         )
+        
         ]),
         body:const SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Column(
             children: [
                SizedBox(
                 height: 10,
               ),
+              Text("What are you looking for?",style: TextStyle(color: Colors.black,fontSize: 20,fontWeight:FontWeight.bold),),
+               Padding(
+           padding: EdgeInsets.all(2.0),
+           child: SearchWidget()
+         ),
              
               
                Padding(
@@ -81,7 +71,7 @@ class MainPage extends ConsumerWidget {
                     Text(
                       "See All",
                       style: TextStyle(
-                          color: Colors.blue,
+                          color: Colors.black,
                           fontSize: 15,
                           fontWeight: FontWeight.bold),
                     )
