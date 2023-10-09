@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>790674254449-drdg0v1eqvbtsfr6ddu9dfpo0hgmgc45.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.790674254449-drdg0v1eqvbtsfr6ddu9dfpo0hgmgc45</string>
+	<key>API_KEY</key>
+	<string>AIzaSyA0FThnTjVTINslS7hRksyFRGCnQwkzGdw</string>
+	<key>GCM_SENDER_ID</key>
+	<string>790674254449</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.ephamarcy</string>
+	<key>PROJECT_ID</key>
+	<string>epharmacy-d2da2</string>
+	<key>STORAGE_BUCKET</key>
+	<string>epharmacy-d2da2.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:790674254449:ios:0d2ae6996f5d15011a09d0</string>
+</dict>
+</plist>
