@@ -1,18 +1,6 @@
 # Flutter eCommerce Application With Firebase ,Riverpod & Stripe Payment Gateway
-
-
-
-A new Flutter project.
+<h1></h1> This project is based on an imaginary phamarcy store that wants to expand their operations by launching a mobile application so that they can sell their goods online.To help the phamarcy store an assessment was carried out and a cross platform mobile application was developed for the store , an agreement was reached to use firebase for the backend because firebase allows developers to launch an M.V.P fast in combination with flutter , which reduces the time for the product to hit the market <h1/>
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
