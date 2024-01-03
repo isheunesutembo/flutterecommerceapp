@@ -12,6 +12,7 @@
 From your Flutter project directory, run the following command to start the app configuration workflow:flutterfire configure</li>
 <li>From your Flutter project directory, run the following command to install the core plugin:flutter pub add firebase_core</li>
 <li>From your Flutter project directory, run the following command to ensure that your Flutter app's Firebase configuration is up-to-date:flutterfire configure</li>
+<li>Run flutter pub get to get all dependencies</li>
 </ol>
 
 
