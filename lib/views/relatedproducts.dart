@@ -1,6 +1,7 @@
-import 'package:ephamarcy/common.dart/error.dart';
+
 import 'package:ephamarcy/controllers/productcontroller.dart';
 import 'package:ephamarcy/views/productdetails.dart';
+import 'package:ephamarcy/widgets/errortext.dart';
 import 'package:ephamarcy/widgets/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

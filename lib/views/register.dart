@@ -96,8 +96,8 @@ class _RegisterState extends ConsumerState<Register> {
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
                           hintText: 'password:',
-                          hintStyle: TextStyle(color: Colors.black),
-                          prefixIcon: Icon(Icons.email_outlined,
+                          hintStyle: const TextStyle(color: Colors.black),
+                          prefixIcon: const Icon(Icons.email_outlined,
                               color: Colors.black, size: 20),
                           alignLabelWithHint: true,
                         ),
@@ -124,8 +124,8 @@ class _RegisterState extends ConsumerState<Register> {
                           border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(10)),
                           hintText: 'password:',
-                          hintStyle: TextStyle(color: Colors.black),
-                          prefixIcon: Icon(Icons.email_outlined,
+                          hintStyle: const TextStyle(color: Colors.black),
+                          prefixIcon: const Icon(Icons.email_outlined,
                               color: Colors.black, size: 20),
                           alignLabelWithHint: true,
                         ),
@@ -166,7 +166,7 @@ class _RegisterState extends ConsumerState<Register> {
                                 MaterialPageRoute(
                                     builder: (context) => SignIn()));
                           },
-                          child: Text("Register"),
+                          child: const Text("Register"),
                         ))
                   ],
                 ),

@@ -44,40 +44,38 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyC1DMR7DUL79VSv7OWSZgxfpyWr15eos1A',
-    appId: '1:909232006368:web:1452702494c4ab251d1c85',
-    messagingSenderId: '909232006368',
-    projectId: 'epharmacy-64f6f',
-    authDomain: 'epharmacy-64f6f.firebaseapp.com',
-    storageBucket: 'epharmacy-64f6f.appspot.com',
-    measurementId: 'G-BP60DGHTYK',
+    apiKey: 'AIzaSyA4YTbItzGc-ollvD2hkJcuGe2cx4gQv5Y',
+    appId: '1:150558134205:web:49c2d374094b5b319b8cd4',
+    messagingSenderId: '150558134205',
+    projectId: 'ephamarcyapp',
+    authDomain: 'ephamarcyapp.firebaseapp.com',
+    storageBucket: 'ephamarcyapp.appspot.com',
+    measurementId: 'G-RGFSR20239',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyCm0alpsA6KtN9k6c6NzflXMk4lOQo4v18',
-    appId: '1:909232006368:android:071b8e80e230e95b1d1c85',
-    messagingSenderId: '909232006368',
-    projectId: 'epharmacy-64f6f',
-    storageBucket: 'epharmacy-64f6f.appspot.com',
+    apiKey: 'AIzaSyCe6V1EA4PESCG0otQW-CePwXd4-gv5SOY',
+    appId: '1:150558134205:android:ea1d789c546d305f9b8cd4',
+    messagingSenderId: '150558134205',
+    projectId: 'ephamarcyapp',
+    storageBucket: 'ephamarcyapp.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyDEE__HLGAAQP5HS6HtvJKyZVqF2KnWXrU',
-    appId: '1:909232006368:ios:3bea1cb8c1dae1111d1c85',
-    messagingSenderId: '909232006368',
-    projectId: 'epharmacy-64f6f',
-    storageBucket: 'epharmacy-64f6f.appspot.com',
-    iosClientId: '909232006368-56qjj76dias1qobbj140s0ptlvem7ni3.apps.googleusercontent.com',
+    apiKey: 'AIzaSyDrBpAHr1lAncIq4e9jIOe2w64kqAnePWI',
+    appId: '1:150558134205:ios:9207b134b55f080a9b8cd4',
+    messagingSenderId: '150558134205',
+    projectId: 'ephamarcyapp',
+    storageBucket: 'ephamarcyapp.appspot.com',
     iosBundleId: 'com.example.ephamarcy',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyDEE__HLGAAQP5HS6HtvJKyZVqF2KnWXrU',
-    appId: '1:909232006368:ios:3bea1cb8c1dae1111d1c85',
-    messagingSenderId: '909232006368',
-    projectId: 'epharmacy-64f6f',
-    storageBucket: 'epharmacy-64f6f.appspot.com',
-    iosClientId: '909232006368-56qjj76dias1qobbj140s0ptlvem7ni3.apps.googleusercontent.com',
+    apiKey: 'AIzaSyDrBpAHr1lAncIq4e9jIOe2w64kqAnePWI',
+    appId: '1:150558134205:ios:9207b134b55f080a9b8cd4',
+    messagingSenderId: '150558134205',
+    projectId: 'ephamarcyapp',
+    storageBucket: 'ephamarcyapp.appspot.com',
     iosBundleId: 'com.example.ephamarcy',
   );
 }

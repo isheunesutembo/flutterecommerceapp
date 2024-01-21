@@ -1,9 +1,10 @@
-import 'package:ephamarcy/common.dart/error.dart';
+
 import 'package:ephamarcy/controllers/authcontroller.dart';
 import 'package:ephamarcy/controllers/cartcontroller.dart';
 import 'package:ephamarcy/views/home.dart';
 import 'package:ephamarcy/widgets/cart_item_widget.dart';
 import 'package:ephamarcy/widgets/checkout_bottom_nav.dart';
+import 'package:ephamarcy/widgets/errortext.dart';
 import 'package:ephamarcy/widgets/loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

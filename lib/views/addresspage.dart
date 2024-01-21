@@ -1,7 +1,8 @@
-import 'package:ephamarcy/common.dart/error.dart';
+
 import 'package:ephamarcy/controllers/addresscontroller.dart';
 import 'package:ephamarcy/views/add_addresspage.dart';
 import 'package:ephamarcy/views/editaddresspage.dart';
+import 'package:ephamarcy/widgets/errortext.dart';
 import 'package:ephamarcy/widgets/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dash/flutter_dash.dart';

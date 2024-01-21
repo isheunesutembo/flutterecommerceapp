@@ -1,5 +1,6 @@
-import 'package:ephamarcy/common.dart/error.dart';
+
 import 'package:ephamarcy/controllers/addresscontroller.dart';
+import 'package:ephamarcy/widgets/errortext.dart';
 import 'package:ephamarcy/widgets/loader.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';

@@ -1,7 +1,7 @@
 {
   "file_generated_by": "FlutterFire CLI",
   "purpose": "FirebaseAppID & ProjectID for this Firebase app in this directory",
-  "GOOGLE_APP_ID": "1:909232006368:ios:3bea1cb8c1dae1111d1c85",
-  "FIREBASE_PROJECT_ID": "epharmacy-64f6f",
-  "GCM_SENDER_ID": "909232006368"
+  "GOOGLE_APP_ID": "1:150558134205:ios:9207b134b55f080a9b8cd4",
+  "FIREBASE_PROJECT_ID": "ephamarcyapp",
+  "GCM_SENDER_ID": "150558134205"
 }

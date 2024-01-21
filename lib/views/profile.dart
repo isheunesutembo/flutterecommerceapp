@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:ephamarcy/common.dart/error.dart';
 import 'package:ephamarcy/controllers/authcontroller.dart';
+import 'package:ephamarcy/widgets/errortext.dart';
 import 'package:ephamarcy/widgets/loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -61,7 +61,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
     final isLoading = ref.watch(authControllerProvider);
     
 
-    return userData.when(
+    return Scaffold(
+      appBar: AppBar(elevation: 0,backgroundColor: Colors.white,),
+      body: userData.when(
         data: (data) {
           _firstname=TextEditingController(text: data.firstname);
           _lastname=TextEditingController(text: data.lastname);
@@ -90,7 +92,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                                   
                                 ),
                             )
-                            : CircleAvatar(
+                            : const CircleAvatar(
                               radius: 60,
                               backgroundImage: AssetImage(
                                   "assets/icon/profile.png",
@@ -174,6 +176,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
           );
         },
         error: (error, stackTrace) => ErrorText(error: error.toString()),
-        loading: () => Loader());
+        loading: () => const Loader()),
+    );
   }
 }

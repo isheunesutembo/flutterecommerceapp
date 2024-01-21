@@ -1,7 +1,8 @@
-import 'package:ephamarcy/common.dart/error.dart';
+
 import 'package:ephamarcy/controllers/authcontroller.dart';
 import 'package:ephamarcy/models/user.dart';
 import 'package:ephamarcy/services/stripepaymentservice.dart';
+import 'package:ephamarcy/widgets/errortext.dart';
 import 'package:ephamarcy/widgets/loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
