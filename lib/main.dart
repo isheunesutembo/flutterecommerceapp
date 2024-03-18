@@ -1,6 +1,7 @@
 import 'package:ephamarcy/apikeys/apikey.dart';
 import 'package:ephamarcy/controllers/authcontroller.dart';
 import 'package:ephamarcy/firebase_options.dart';
+import 'package:ephamarcy/models/product.dart';
 import 'package:ephamarcy/models/user.dart';
 import 'package:ephamarcy/router.dart';
 import 'package:ephamarcy/widgets/errortext.dart';
@@ -10,23 +11,31 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:routemaster/routemaster.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-  options: DefaultFirebaseOptions.currentPlatform,
-);
+  try{
+WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  await Hive.initFlutter();
+  Hive.registerAdapter(ProductAdapter());
+  await Hive.openBox<Product>('products_wishlist');
   Stripe.publishableKey = APIKey.PUBLISHABLEkEY;
   await Stripe.instance.applySettings();
 
   runApp(ProviderScope(child: MyApp()));
+  }catch(e){
+    runApp(ProviderScope(child: Text(e.toString())));
+  }
+  
 }
 
 class MyApp extends ConsumerWidget {
   UserModel? userModel;
  getData(WidgetRef ref,User data)async{
-  userModel=ref.watch(authControllerProvider.notifier).getUserData(data.uid).first as UserModel?;
+  userModel=await ref.watch(authControllerProvider.notifier).getUserData(data.uid).first;
+  
   ref.read(userProvider.notifier).update((state) => userModel);
  }
    MyApp({Key? key}) : super(key: key);
@@ -40,13 +49,15 @@ class MyApp extends ConsumerWidget {
               routerDelegate: RoutemasterDelegate(routesBuilder: (context) {
                 if (data != null) {
                   getData(ref, data);
-                  return loggedOutRoute;
+                  return loggedInRoute;
                 }
-                return loggedInRoute;
+                return loggedOutRoute;
               }),
-              routeInformationParser: RoutemasterParser(),
+              routeInformationParser: const RoutemasterParser(),
             ),
-        error: (error, stackTrace) => ErrorText(error: error.toString()),
-        loading: () => Loader());
+        error: (error, stackTrace) => Directionality(
+            textDirection: TextDirection.rtl,
+            child: ErrorText(error: error.toString())),
+        loading: () => const Loader());
   }
 }

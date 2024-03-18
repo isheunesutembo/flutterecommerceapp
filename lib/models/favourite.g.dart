@@ -6,13 +6,14 @@ part of 'favourite.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Favourite _$$_FavouriteFromJson(Map<String, dynamic> json) => _$_Favourite(
+_$FavouriteImpl _$$FavouriteImplFromJson(Map<String, dynamic> json) =>
+    _$FavouriteImpl(
       products: (json['products'] as List<dynamic>)
           .map((e) => Product.fromJson(e as Map<String, dynamic>))
           .toList(),
     );
 
-Map<String, dynamic> _$$_FavouriteToJson(_$_Favourite instance) =>
+Map<String, dynamic> _$$FavouriteImplToJson(_$FavouriteImpl instance) =>
     <String, dynamic>{
       'products': instance.products,
     };

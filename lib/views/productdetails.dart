@@ -1,12 +1,13 @@
 
 import 'package:ephamarcy/controllers/cartcontroller.dart';
-import 'package:ephamarcy/controllers/favouriteproductcontroller.dart';
+import 'package:ephamarcy/controllers/productwishlistcontroller.dart';
 import 'package:ephamarcy/core/utils.dart';
 import 'package:ephamarcy/models/product.dart';
 import 'package:ephamarcy/views/relatedproducts.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:get/get.dart';
 
 class ProductDetailsPage extends ConsumerStatefulWidget {
   const ProductDetailsPage({super.key});
@@ -22,7 +23,9 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
   
   @override
   Widget build(BuildContext context) {
-    bool _isFavourite=false;
+
+      final productsController=Get.put(ProductWishListController());
+   
     final product = ModalRoute.of(context)!.settings.arguments as Product;
     
     final cart=ref.watch(cartControllerProvider.notifier);
@@ -39,9 +42,9 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
                          ref.watch(cartControllerProvider.notifier).addProductToCart(product,context);
                          showSnackBar(context, "Added to Cart");
                       },
-                      child:Stack(
+                      child:const Stack(
                         children: [
-                          const Icon(
+                           Icon(
                             Icons.shopping_cart,
                             color: Colors.blue,
                             size: 25,
@@ -51,7 +54,8 @@ class _ProductDetailsPageState extends ConsumerState<ProductDetailsPage> {
                       ),
                     ),
                  IconButton(onPressed:(){
-                  ref.read(favouritesControllerProvider.notifier).toggleFavouriteStatus(_isFavourite, product);
+               productsController.addProduct(product, context);
+                 
                  },icon:Icon( _isFavourite? Icons.favorite:Icons.favorite_outline,size: 30,))
                 
            ],)

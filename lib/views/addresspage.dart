@@ -1,4 +1,6 @@
 
+
+
 import 'package:ephamarcy/controllers/addresscontroller.dart';
 import 'package:ephamarcy/views/add_addresspage.dart';
 import 'package:ephamarcy/views/editaddresspage.dart';
@@ -58,8 +60,8 @@ class AddressPage extends ConsumerWidget {
           ],
         ),
         body: address.when(
-            data: (data) {
-              return SafeArea(
+            data:(data) {
+              return    SafeArea(
                   child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Stack(

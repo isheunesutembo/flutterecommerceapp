@@ -1,9 +1,10 @@
 import 'dart:convert';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:ephamarcy/apikeys/apikey.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-
+final stripePaymentServiceProvider=Provider((ref) => StripePaymentService());
 class StripePaymentService {
   Map<String, dynamic>? paymentIntent;
   Future<void> makePayment(BuildContext context, double amount) async {
@@ -14,14 +15,14 @@ class StripePaymentService {
       //STEP 2: Initialize Payment Sheet
       await Stripe.instance
           .initPaymentSheet(
+            
               paymentSheetParameters: SetupPaymentSheetParameters(
                   customFlow: true,
                   paymentIntentClientSecret: paymentIntent![
                       'client_secret'], //Gotten from payment intent
                   style: ThemeMode.light,
                   merchantDisplayName: 'Isheunesu',
-                  googlePay:
-                      const PaymentSheetGooglePay(merchantCountryCode: "US"),
+                  googlePay:const PaymentSheetGooglePay(merchantCountryCode: "US",testEnv: true),
                   allowsDelayedPaymentMethods: true))
           .then((value) {
 
@@ -35,6 +36,7 @@ class StripePaymentService {
   }
 
   createPaymentIntent(String amount, String currency) async {
+    
     try {
       //Request body
       Map<String, dynamic> body = {
@@ -62,6 +64,7 @@ class StripePaymentService {
     try {
       await Stripe.instance.presentPaymentSheet().then((value) {
         showDialog(
+        
             context: context,
             builder: (_) => const AlertDialog(
                   content: Column(

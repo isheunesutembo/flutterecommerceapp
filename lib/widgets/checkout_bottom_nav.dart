@@ -2,6 +2,7 @@
 import 'package:ephamarcy/controllers/authcontroller.dart';
 import 'package:ephamarcy/models/user.dart';
 import 'package:ephamarcy/services/stripepaymentservice.dart';
+import 'package:ephamarcy/views/checkoutscreen.dart';
 import 'package:ephamarcy/widgets/errortext.dart';
 import 'package:ephamarcy/widgets/loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -23,33 +24,27 @@ class CheckOutBottomNav extends ConsumerWidget {
                   padding: const EdgeInsets.all(8.0),
                   child: GestureDetector(
                     onTap: () {
-                      stripePaymentService.makePayment(
-                          context, data.grandTotal);
-                         // data.cart!.clear();
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>CheckOutScreen()));
                     },
                     child: Container(
                       height: 50,
                       decoration: BoxDecoration(
                           color: Colors.blueAccent,
                           borderRadius: BorderRadius.circular(20)),
-                      child: Padding(
-                        padding: EdgeInsets.all(8),
+                      child:const Padding(
+                        padding: const EdgeInsets.all(8),
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              "Total:\$${data.grandTotal.toString()}",
-                              style: const TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 15),
-                            ),
-                            const Text(
-                              "Proceed To CheckOut",
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold),
+                            
+                            Center(
+                              child:  Text(
+                                "Proceed To CheckOut",
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 15,
+                                    fontWeight: FontWeight.bold),
+                              ),
                             )
                           ],
                         ),

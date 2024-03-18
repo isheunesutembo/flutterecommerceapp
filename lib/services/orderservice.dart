@@ -7,7 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
 
-final ordersProvider = Provider((ref) => OrderService(
+final ordersServiceProvider = Provider((ref) => OrderService(
     firestore: ref.watch(firebaseFirestoreProvider),
     firebaseAuth: ref.watch(firebaseAuthProvider),
     firebaseStorage: ref.watch(firebaseStorageProvider)));

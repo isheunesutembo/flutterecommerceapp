@@ -1,9 +1,13 @@
+import 'package:ephamarcy/controllers/authcontroller.dart';
 import 'package:ephamarcy/controllers/cartcontroller.dart';
 import 'package:ephamarcy/views/cartpage.dart';
 import 'package:ephamarcy/widgets/categories_widgets.dart';
+import 'package:ephamarcy/widgets/errortext.dart';
+import 'package:ephamarcy/widgets/loader.dart';
 import 'package:ephamarcy/widgets/products_widget.dart';
 import 'package:ephamarcy/widgets/searchdelegate.dart';
 import 'package:ephamarcy/widgets/searchwidget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -12,9 +16,13 @@ class MainPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final currentUser = FirebaseAuth.instance.currentUser;
     double height = MediaQuery.of(context).size.height;
     final cart = ref.watch(cartControllerProvider.notifier);
-    return Scaffold(
+
+    final userData = ref.watch(getUserDataProvider(currentUser!.uid));
+    return  userData.when(data: (data){
+      return Scaffold(
         appBar: AppBar(elevation: 0, backgroundColor: Colors.white, actions: [
           Padding(
             padding: const EdgeInsets.all(8.0),
@@ -23,12 +31,25 @@ class MainPage extends ConsumerWidget {
                   Navigator.push(context,
                       MaterialPageRoute(builder: (context) => CartPage()));
                 },
-                child:const Stack(
+                child: Stack(
                   children: [
-                     Icon(
-                      Icons.shopping_cart_rounded,
-                      color: Colors.black,
+                     
+                   Container(
+                    height: 40,
+                    width: 40,
+                    decoration:const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.black
                     ),
+                     child: const  Icon(
+                        Icons.shopping_cart_rounded,
+                        color: Colors.white,
+                      ),
+                   ),
+                    data.cart != null  ? Positioned(top: 0,right: 6,child: Text(data.cart!.length.toString(),
+                                                  style: const TextStyle(color: Colors.white,fontSize: 15,
+                                                  fontWeight: FontWeight.w700),)):const Text("")
+                  
                     
 
                   ],
@@ -82,5 +103,6 @@ class MainPage extends ConsumerWidget {
             ],
           ),
         ));
+    }, error: (error,stackTrace)=>ErrorText(error: error.toString(),), loading: ()=>Loader());
   }
 }

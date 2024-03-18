@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'user.freezed.dart';
 part 'user.g.dart';
-
 @freezed
 abstract class UserModel with _$UserModel {
   factory UserModel({
@@ -23,6 +22,6 @@ abstract class UserModel with _$UserModel {
 
 extension CartExt on UserModel {
   double get grandTotal {
-    return cart!.map((e) => e.cost).fold(0, (p, c) => p + c);
+    return cart!.map((e) => e.cost*e.quantity).fold(0, (p, c) => p + c);
   }
 }

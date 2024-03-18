@@ -6,7 +6,7 @@ part of 'user.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Cart _$$_CartFromJson(Map<String, dynamic> json) => _$_Cart(
+_$CartImpl _$$CartImplFromJson(Map<String, dynamic> json) => _$CartImpl(
       uid: json['uid'] as String,
       firstname: json['firstname'] as String?,
       lastname: json['lastname'] as String?,
@@ -18,7 +18,8 @@ _$_Cart _$$_CartFromJson(Map<String, dynamic> json) => _$_Cart(
           .toList(),
     );
 
-Map<String, dynamic> _$$_CartToJson(_$_Cart instance) => <String, dynamic>{
+Map<String, dynamic> _$$CartImplToJson(_$CartImpl instance) =>
+    <String, dynamic>{
       'uid': instance.uid,
       'firstname': instance.firstname,
       'lastname': instance.lastname,

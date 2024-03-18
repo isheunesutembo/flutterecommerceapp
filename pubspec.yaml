@@ -33,10 +33,11 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
-  firebase_core: ^2.20.0
-  firebase_auth: ^4.6.3
-  flutter_riverpod: ^2.3.6
-  cloud_firestore: ^4.3.1
+
+  flutter_riverpod: ^2.4.6
+  firebase_core: ^2.22.0
+  firebase_auth: ^4.13.0
+  cloud_firestore: ^4.13.1
   firebase_storage: ^11.0.10
   fpdart: ^0.4.0
   fluttertoast: ^8.2.2
@@ -52,6 +53,11 @@ dependencies:
   flutter_paypal: ^0.2.0
   flutter_paypal_checkout: ^1.0.1
   http_auth: ^1.0.2
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+  dotted_line: ^3.2.2
+  get: ^4.6.6
+  
 
   
   
@@ -67,6 +73,7 @@ dev_dependencies:
   # rules and activating additional ones.
   flutter_lints: ^2.0.0
   build_runner: ^2.1.11
+  hive_generator: ^2.0.1
   json_serializable: ^6.2.0
 
 # For information on the generic Dart part of this file, see the

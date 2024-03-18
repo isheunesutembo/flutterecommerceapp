@@ -12,7 +12,7 @@ part of 'address.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 AddressModel _$AddressModelFromJson(Map<String, dynamic> json) {
   return _AddressModel.fromJson(json);
@@ -80,22 +80,22 @@ class _$AddressModelCopyWithImpl<$Res, $Val extends AddressModel>
 }
 
 /// @nodoc
-abstract class _$$_AddressModelCopyWith<$Res>
+abstract class _$$AddressModelImplCopyWith<$Res>
     implements $AddressModelCopyWith<$Res> {
-  factory _$$_AddressModelCopyWith(
-          _$_AddressModel value, $Res Function(_$_AddressModel) then) =
-      __$$_AddressModelCopyWithImpl<$Res>;
+  factory _$$AddressModelImplCopyWith(
+          _$AddressModelImpl value, $Res Function(_$AddressModelImpl) then) =
+      __$$AddressModelImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({String city, String address, String houseNo, int zipCode});
 }
 
 /// @nodoc
-class __$$_AddressModelCopyWithImpl<$Res>
-    extends _$AddressModelCopyWithImpl<$Res, _$_AddressModel>
-    implements _$$_AddressModelCopyWith<$Res> {
-  __$$_AddressModelCopyWithImpl(
-      _$_AddressModel _value, $Res Function(_$_AddressModel) _then)
+class __$$AddressModelImplCopyWithImpl<$Res>
+    extends _$AddressModelCopyWithImpl<$Res, _$AddressModelImpl>
+    implements _$$AddressModelImplCopyWith<$Res> {
+  __$$AddressModelImplCopyWithImpl(
+      _$AddressModelImpl _value, $Res Function(_$AddressModelImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -106,7 +106,7 @@ class __$$_AddressModelCopyWithImpl<$Res>
     Object? houseNo = null,
     Object? zipCode = null,
   }) {
-    return _then(_$_AddressModel(
+    return _then(_$AddressModelImpl(
       city: null == city
           ? _value.city
           : city // ignore: cast_nullable_to_non_nullable
@@ -129,15 +129,15 @@ class __$$_AddressModelCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_AddressModel implements _AddressModel {
-  _$_AddressModel(
+class _$AddressModelImpl implements _AddressModel {
+  _$AddressModelImpl(
       {required this.city,
       required this.address,
       required this.houseNo,
       required this.zipCode});
 
-  factory _$_AddressModel.fromJson(Map<String, dynamic> json) =>
-      _$$_AddressModelFromJson(json);
+  factory _$AddressModelImpl.fromJson(Map<String, dynamic> json) =>
+      _$$AddressModelImplFromJson(json);
 
   @override
   final String city;
@@ -154,10 +154,10 @@ class _$_AddressModel implements _AddressModel {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_AddressModel &&
+            other is _$AddressModelImpl &&
             (identical(other.city, city) || other.city == city) &&
             (identical(other.address, address) || other.address == address) &&
             (identical(other.houseNo, houseNo) || other.houseNo == houseNo) &&
@@ -171,12 +171,12 @@ class _$_AddressModel implements _AddressModel {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_AddressModelCopyWith<_$_AddressModel> get copyWith =>
-      __$$_AddressModelCopyWithImpl<_$_AddressModel>(this, _$identity);
+  _$$AddressModelImplCopyWith<_$AddressModelImpl> get copyWith =>
+      __$$AddressModelImplCopyWithImpl<_$AddressModelImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_AddressModelToJson(
+    return _$$AddressModelImplToJson(
       this,
     );
   }
@@ -187,10 +187,10 @@ abstract class _AddressModel implements AddressModel {
       {required final String city,
       required final String address,
       required final String houseNo,
-      required final int zipCode}) = _$_AddressModel;
+      required final int zipCode}) = _$AddressModelImpl;
 
   factory _AddressModel.fromJson(Map<String, dynamic> json) =
-      _$_AddressModel.fromJson;
+      _$AddressModelImpl.fromJson;
 
   @override
   String get city;
@@ -202,6 +202,6 @@ abstract class _AddressModel implements AddressModel {
   int get zipCode;
   @override
   @JsonKey(ignore: true)
-  _$$_AddressModelCopyWith<_$_AddressModel> get copyWith =>
+  _$$AddressModelImplCopyWith<_$AddressModelImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

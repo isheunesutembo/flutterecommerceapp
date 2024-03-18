@@ -75,7 +75,11 @@ class AuthService {
         (event) => UserModel.fromJson(event.data() as Map<String, dynamic>));
   }
 
-  
+   Stream<UserModel> getUserDataFromFirestore() {
+    return _users.doc(_firebaseAuth.currentUser!.uid).snapshots().map(
+        (event) => UserModel.fromJson(event.data() as Map<String, dynamic>));
+  }
+
   Either<dynamic,Future<void>>updateUser(UserModel user){
     final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
     User? currentuser = _firebaseAuth.currentUser;

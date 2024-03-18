@@ -10,6 +10,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fpdart/fpdart.dart';
 import 'package:uuid/uuid.dart';
 
@@ -72,7 +73,7 @@ class CartService {
     if (item.quantity == 1) {
       removeCartItem(item);
     } else {
-      removeCartItem(item);
+      
       item.quantity - 1;
       FirebaseConstants.cartRef.update({
         "cart": FieldValue.arrayRemove([item.toJson()])
@@ -87,12 +88,13 @@ class CartService {
   void increaseQuantity(CartItem item) {
     // removeCartItem(item);
     FirebaseConstants.cartRef.get().then((DocumentSnapshot doc) {
-      final data = doc.data() as Map<String, dynamic>;
+      final dynamic data = doc.data() as Map<String, dynamic>;
       _firestore.runTransaction((transaction) async {
         final snapshot = await transaction.get(FirebaseConstants.cartRef);
-        final newQuantity = snapshot.get(data["quantity"]) + 1;
-        transaction.update(FirebaseConstants.cartRef, newQuantity);
-      });
+        final newQuantity = snapshot.get(data!["cart"]) + 1;
+        
+      }).then((quantity)=>print("error increasing quantity"),
+      onError: (e)=>print("Error updating document $e"));
     });
   }
 }

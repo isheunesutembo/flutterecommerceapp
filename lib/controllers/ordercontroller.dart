@@ -1,11 +1,13 @@
+import 'package:ephamarcy/controllers/authcontroller.dart';
+import 'package:ephamarcy/core/orderenum.dart';
 import 'package:ephamarcy/models/address.dart';
 import 'package:ephamarcy/models/cartitem.dart';
 import 'package:ephamarcy/models/order.dart';
-import 'package:ephamarcy/services/orderdervice.dart';
+import 'package:ephamarcy/services/orderservice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:uuid/uuid.dart';
-
+final orderControllerProvider=StateNotifierProvider<OrderController,bool>((ref)=>OrderController(ref: ref, orderService:ref.watch(ordersServiceProvider )));
 class OrderController extends StateNotifier<bool> {
   final Ref _ref;
   final OrderService _orderService;
@@ -13,28 +15,33 @@ class OrderController extends StateNotifier<bool> {
       : _ref = ref,
         _orderService = orderService,
         super(false);
+      
   void createOrder(
       BuildContext context,
-      AddressModel address,
+      String uid,
       List<CartItem> products,
-      double total,
-      String orderStatus,
-      DateTime date) {
+      AddressModel address,
+      double total) {
+    
     String orderId = const Uuid().v1();
-    final order = Orders(
-        address: address,
+   final userData=_ref.read(getUserDataFromFirestoreProvider).whenData((value) =>_orderService.createOrder(Orders(products:value.cart!, total: total, orderId: orderId, address: address, orderStatus: OrderStatus.pending, date: DateTime.now())));
+    /*final order = Orders(
+      uid: uid,
         products: products,
         total: total,
         orderId: orderId,
-        orderStatus: orderStatus,
-        date: date);
+        address: address,
+        date: DateTime.now(),
+        orderStatus: OrderStatus.pending);
     final res = _orderService.createOrder(order);
     state = false;
+    */
 
-    res.fold(
+    /*res.fold(
         (l) => ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text(l.message))),
         (r) => ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text("product uploaded successfully"))));
+            const SnackBar(content: Text("Order has been placed successfully"))));
+            */
   }
 }

@@ -13,6 +13,7 @@ class CategoriesPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final categories = ref.watch(categoriesProvider);
     return categories.when(
+      
         data: (data) {
           return GridView.builder(
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -22,6 +23,8 @@ class CategoriesPage extends ConsumerWidget {
             scrollDirection: Axis.vertical,
             shrinkWrap: true,
             itemBuilder: ((context, index) {
+              
+              
               return Scaffold(
                 
                 body: Padding(

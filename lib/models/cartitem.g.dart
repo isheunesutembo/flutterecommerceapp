@@ -6,7 +6,8 @@ part of 'cartitem.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_CartItem _$$_CartItemFromJson(Map<String, dynamic> json) => _$_CartItem(
+_$CartItemImpl _$$CartItemImplFromJson(Map<String, dynamic> json) =>
+    _$CartItemImpl(
       cartId: json['cartId'] as String,
       image: json['image'] as String,
       productId: json['productId'] as String,
@@ -16,7 +17,7 @@ _$_CartItem _$$_CartItemFromJson(Map<String, dynamic> json) => _$_CartItem(
       price: (json['price'] as num).toDouble(),
     );
 
-Map<String, dynamic> _$$_CartItemToJson(_$_CartItem instance) =>
+Map<String, dynamic> _$$CartItemImplToJson(_$CartItemImpl instance) =>
     <String, dynamic>{
       'cartId': instance.cartId,
       'image': instance.image,

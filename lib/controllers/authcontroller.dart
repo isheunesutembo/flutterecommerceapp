@@ -25,6 +25,11 @@ final getUserDataProvider = StreamProvider.family((ref, String uid) {
   final authController = ref.watch(authControllerProvider.notifier);
   return authController.getUserData(uid);
 });
+final getUserDataFromFirestoreProvider = StreamProvider((ref) {
+  final authController = ref.watch(authControllerProvider.notifier);
+  return authController.getUserDataFromFirestore();
+});
+
 
 class AuthController extends StateNotifier<bool> {
   final AuthService _authService;
@@ -40,7 +45,7 @@ class AuthController extends StateNotifier<bool> {
         super(false);
 
   Stream<User?> get authStateChange => _authService.authStateChange;
-  UserModel userModel = UserModel(uid: FirebaseAuth.instance.currentUser!.uid);
+  //UserModel userModel = UserModel(uid: FirebaseAuth.instance.currentUser!.uid);
   void signInWithEmailAndPassword(
       BuildContext context, String email, String password) async {
     state = true;
@@ -72,7 +77,9 @@ class AuthController extends StateNotifier<bool> {
   Stream<UserModel> getUserData(uid) {
     return _authService.getUserData(uid);
   }
-
+  Stream<UserModel>getUserDataFromFirestore(){
+    return _authService.getUserDataFromFirestore();
+  }
   void updateUser(
     BuildContext context,
     File image,

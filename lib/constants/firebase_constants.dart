@@ -12,7 +12,7 @@ class FirebaseConstants {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   static final cartRef = FirebaseFirestore.instance
       .collection("users")
-      .doc(user!.uid.toString());
+      .doc(user.uid.toString());
   static final orderRef = FirebaseFirestore.instance.collection("Orders");
   static final addressRef =
       FirebaseFirestore.instance.collection("Adresses").doc(user.uid);

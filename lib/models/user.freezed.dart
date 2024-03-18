@@ -12,7 +12,7 @@ part of 'user.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 UserModel _$UserModelFromJson(Map<String, dynamic> json) {
   return _Cart.fromJson(json);
@@ -104,9 +104,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
 }
 
 /// @nodoc
-abstract class _$$_CartCopyWith<$Res> implements $UserModelCopyWith<$Res> {
-  factory _$$_CartCopyWith(_$_Cart value, $Res Function(_$_Cart) then) =
-      __$$_CartCopyWithImpl<$Res>;
+abstract class _$$CartImplCopyWith<$Res> implements $UserModelCopyWith<$Res> {
+  factory _$$CartImplCopyWith(
+          _$CartImpl value, $Res Function(_$CartImpl) then) =
+      __$$CartImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call(
@@ -120,9 +121,10 @@ abstract class _$$_CartCopyWith<$Res> implements $UserModelCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$$_CartCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res, _$_Cart>
-    implements _$$_CartCopyWith<$Res> {
-  __$$_CartCopyWithImpl(_$_Cart _value, $Res Function(_$_Cart) _then)
+class __$$CartImplCopyWithImpl<$Res>
+    extends _$UserModelCopyWithImpl<$Res, _$CartImpl>
+    implements _$$CartImplCopyWith<$Res> {
+  __$$CartImplCopyWithImpl(_$CartImpl _value, $Res Function(_$CartImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -136,7 +138,7 @@ class __$$_CartCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res, _$_Cart>
     Object? profileImage = freezed,
     Object? cart = freezed,
   }) {
-    return _then(_$_Cart(
+    return _then(_$CartImpl(
       uid: null == uid
           ? _value.uid
           : uid // ignore: cast_nullable_to_non_nullable
@@ -171,8 +173,8 @@ class __$$_CartCopyWithImpl<$Res> extends _$UserModelCopyWithImpl<$Res, _$_Cart>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Cart with DiagnosticableTreeMixin implements _Cart {
-  _$_Cart(
+class _$CartImpl with DiagnosticableTreeMixin implements _Cart {
+  _$CartImpl(
       {required this.uid,
       this.firstname,
       this.lastname,
@@ -182,7 +184,8 @@ class _$_Cart with DiagnosticableTreeMixin implements _Cart {
       final List<CartItem>? cart})
       : _cart = cart;
 
-  factory _$_Cart.fromJson(Map<String, dynamic> json) => _$$_CartFromJson(json);
+  factory _$CartImpl.fromJson(Map<String, dynamic> json) =>
+      _$$CartImplFromJson(json);
 
   @override
   final String uid;
@@ -226,10 +229,10 @@ class _$_Cart with DiagnosticableTreeMixin implements _Cart {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Cart &&
+            other is _$CartImpl &&
             (identical(other.uid, uid) || other.uid == uid) &&
             (identical(other.firstname, firstname) ||
                 other.firstname == firstname) &&
@@ -250,12 +253,12 @@ class _$_Cart with DiagnosticableTreeMixin implements _Cart {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_CartCopyWith<_$_Cart> get copyWith =>
-      __$$_CartCopyWithImpl<_$_Cart>(this, _$identity);
+  _$$CartImplCopyWith<_$CartImpl> get copyWith =>
+      __$$CartImplCopyWithImpl<_$CartImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_CartToJson(
+    return _$$CartImplToJson(
       this,
     );
   }
@@ -269,9 +272,9 @@ abstract class _Cart implements UserModel {
       final String? city,
       final String? address,
       final String? profileImage,
-      final List<CartItem>? cart}) = _$_Cart;
+      final List<CartItem>? cart}) = _$CartImpl;
 
-  factory _Cart.fromJson(Map<String, dynamic> json) = _$_Cart.fromJson;
+  factory _Cart.fromJson(Map<String, dynamic> json) = _$CartImpl.fromJson;
 
   @override
   String get uid;
@@ -289,5 +292,6 @@ abstract class _Cart implements UserModel {
   List<CartItem>? get cart;
   @override
   @JsonKey(ignore: true)
-  _$$_CartCopyWith<_$_Cart> get copyWith => throw _privateConstructorUsedError;
+  _$$CartImplCopyWith<_$CartImpl> get copyWith =>
+      throw _privateConstructorUsedError;
 }

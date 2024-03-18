@@ -12,7 +12,7 @@ part of 'favourite.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 Favourite _$FavouriteFromJson(Map<String, dynamic> json) {
   return _Favourite.fromJson(json);
@@ -61,21 +61,22 @@ class _$FavouriteCopyWithImpl<$Res, $Val extends Favourite>
 }
 
 /// @nodoc
-abstract class _$$_FavouriteCopyWith<$Res> implements $FavouriteCopyWith<$Res> {
-  factory _$$_FavouriteCopyWith(
-          _$_Favourite value, $Res Function(_$_Favourite) then) =
-      __$$_FavouriteCopyWithImpl<$Res>;
+abstract class _$$FavouriteImplCopyWith<$Res>
+    implements $FavouriteCopyWith<$Res> {
+  factory _$$FavouriteImplCopyWith(
+          _$FavouriteImpl value, $Res Function(_$FavouriteImpl) then) =
+      __$$FavouriteImplCopyWithImpl<$Res>;
   @override
   @useResult
   $Res call({List<Product> products});
 }
 
 /// @nodoc
-class __$$_FavouriteCopyWithImpl<$Res>
-    extends _$FavouriteCopyWithImpl<$Res, _$_Favourite>
-    implements _$$_FavouriteCopyWith<$Res> {
-  __$$_FavouriteCopyWithImpl(
-      _$_Favourite _value, $Res Function(_$_Favourite) _then)
+class __$$FavouriteImplCopyWithImpl<$Res>
+    extends _$FavouriteCopyWithImpl<$Res, _$FavouriteImpl>
+    implements _$$FavouriteImplCopyWith<$Res> {
+  __$$FavouriteImplCopyWithImpl(
+      _$FavouriteImpl _value, $Res Function(_$FavouriteImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -83,7 +84,7 @@ class __$$_FavouriteCopyWithImpl<$Res>
   $Res call({
     Object? products = null,
   }) {
-    return _then(_$_Favourite(
+    return _then(_$FavouriteImpl(
       products: null == products
           ? _value._products
           : products // ignore: cast_nullable_to_non_nullable
@@ -94,11 +95,12 @@ class __$$_FavouriteCopyWithImpl<$Res>
 
 /// @nodoc
 @JsonSerializable()
-class _$_Favourite implements _Favourite {
-  _$_Favourite({required final List<Product> products}) : _products = products;
+class _$FavouriteImpl implements _Favourite {
+  _$FavouriteImpl({required final List<Product> products})
+      : _products = products;
 
-  factory _$_Favourite.fromJson(Map<String, dynamic> json) =>
-      _$$_FavouriteFromJson(json);
+  factory _$FavouriteImpl.fromJson(Map<String, dynamic> json) =>
+      _$$FavouriteImplFromJson(json);
 
   final List<Product> _products;
   @override
@@ -114,10 +116,10 @@ class _$_Favourite implements _Favourite {
   }
 
   @override
-  bool operator ==(dynamic other) {
+  bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$_Favourite &&
+            other is _$FavouriteImpl &&
             const DeepCollectionEquality().equals(other._products, _products));
   }
 
@@ -129,27 +131,27 @@ class _$_Favourite implements _Favourite {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$_FavouriteCopyWith<_$_Favourite> get copyWith =>
-      __$$_FavouriteCopyWithImpl<_$_Favourite>(this, _$identity);
+  _$$FavouriteImplCopyWith<_$FavouriteImpl> get copyWith =>
+      __$$FavouriteImplCopyWithImpl<_$FavouriteImpl>(this, _$identity);
 
   @override
   Map<String, dynamic> toJson() {
-    return _$$_FavouriteToJson(
+    return _$$FavouriteImplToJson(
       this,
     );
   }
 }
 
 abstract class _Favourite implements Favourite {
-  factory _Favourite({required final List<Product> products}) = _$_Favourite;
+  factory _Favourite({required final List<Product> products}) = _$FavouriteImpl;
 
   factory _Favourite.fromJson(Map<String, dynamic> json) =
-      _$_Favourite.fromJson;
+      _$FavouriteImpl.fromJson;
 
   @override
   List<Product> get products;
   @override
   @JsonKey(ignore: true)
-  _$$_FavouriteCopyWith<_$_Favourite> get copyWith =>
+  _$$FavouriteImplCopyWith<_$FavouriteImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

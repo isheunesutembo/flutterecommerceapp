@@ -1,45 +1,51 @@
 {
   "project_info": {
-    "project_number": "150558134205",
-    "project_id": "ephamarcyapp",
-    "storage_bucket": "ephamarcyapp.appspot.com"
+    "project_number": "440414274394",
+    "project_id": "houseflip-949f0",
+    "storage_bucket": "houseflip-949f0.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:150558134205:android:5290434ed94b3e629b8cd4",
+        "mobilesdk_app_id": "1:440414274394:android:638d40ef034cfd620ce963",
         "android_client_info": {
-          "package_name": "com.example.ecommerceadmin"
+          "package_name": "com.stackwiseconsultance.zones"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "440414274394-s7vri7gihsnmpd7aqu8j0u8vr3n06o3e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.stackwiseconsultance.zones",
+            "certificate_hash": "12287a4fb469f65fa45444053600b3a5f3d7d816"
+          }
+        },
+        {
+          "client_id": "440414274394-j5e2jca7fcju6ha0j99m4hsem97fq30s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
-          "current_key": "AIzaSyCe6V1EA4PESCG0otQW-CePwXd4-gv5SOY"
+          "current_key": "AIzaSyDbdQmXnkBUIktAX_q1VieEjrkuQ4Vmow8"
         }
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:150558134205:android:ea1d789c546d305f9b8cd4",
-        "android_client_info": {
-          "package_name": "com.example.ephamarcy"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCe6V1EA4PESCG0otQW-CePwXd4-gv5SOY"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "440414274394-j5e2jca7fcju6ha0j99m4hsem97fq30s.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "440414274394-66u88dpmvj1o4b6sbcu621r8cse57kib.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.houseflipapp.RunnerTests"
+              }
+            }
+          ]
         }
       }
     }

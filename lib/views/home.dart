@@ -1,10 +1,12 @@
 import 'package:ephamarcy/controllers/cartcontroller.dart';
 import 'package:ephamarcy/views/cartpage.dart';
 import 'package:ephamarcy/views/categoriespage.dart';
-import 'package:ephamarcy/views/favourites.dart';
+
 import 'package:ephamarcy/views/mainpage.dart';
+import 'package:ephamarcy/views/productwishlistpage.dart';
 import 'package:ephamarcy/views/settings.dart';
 import 'package:ephamarcy/widgets/categories_widgets.dart';
+
 import 'package:ephamarcy/widgets/products_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -27,6 +29,7 @@ class _HomeState extends ConsumerState<Home> {
   List<Widget> pages = [
     const MainPage(),
     const CategoriesPage(),
+    ProductsWishListPage(),
     CartPage(),
     SettingsPage()
   ];
@@ -38,7 +41,7 @@ class _HomeState extends ConsumerState<Home> {
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.white,
           currentIndex: selectedIndex,
-          selectedItemColor: Colors.blue,
+          selectedItemColor: Colors.orange,
           onTap: _onItemTap,
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(
@@ -54,7 +57,14 @@ class _HomeState extends ConsumerState<Home> {
                   color: Colors.black,
                   size: 30,
                 ),
-                label: "Categories"),
+                label: "Favourites"),
+                 BottomNavigationBarItem(
+                icon: Icon(
+                  Icons.favorite,
+                  color: Colors.black,
+                  size: 30,
+                ),
+                label: "Favourites"),
             BottomNavigationBarItem(
                 icon: Stack(
                   children: [

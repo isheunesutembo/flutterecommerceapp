@@ -64,7 +64,7 @@ class CartItemWidget extends ConsumerWidget {
             style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold,color:Colors.blue),
           ),
         ),
-       const Divider(thickness: 2,color: Colors.black,)
+       const Divider(thickness: 2,color: Colors.orange,)
       ],
     );
   }

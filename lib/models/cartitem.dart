@@ -2,9 +2,10 @@
 import'package:freezed_annotation/freezed_annotation.dart';
 part 'cartitem.freezed.dart';
 part 'cartitem.g.dart';
-List<CartItem> productFromJson(dynamic str) =>
+List<CartItem>cartFromJson(dynamic str) =>
  List<CartItem>.from((str).map((e) => CartItem.fromJson(e)));
 @freezed
+@JsonSerializable()
 abstract class CartItem with _$CartItem{
   factory CartItem({
     required String cartId ,

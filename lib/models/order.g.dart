@@ -6,22 +6,31 @@ part of 'order.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$_Orders _$$_OrdersFromJson(Map<String, dynamic> json) => _$_Orders(
-      address: AddressModel.fromJson(json['address'] as Map<String, dynamic>),
+_$OrdersImpl _$$OrdersImplFromJson(Map<String, dynamic> json) => _$OrdersImpl(
+      uid: json['uid'] as String?,
       products: (json['products'] as List<dynamic>)
           .map((e) => CartItem.fromJson(e as Map<String, dynamic>))
           .toList(),
       total: (json['total'] as num).toDouble(),
       orderId: json['orderId'] as String,
-      orderStatus: json['orderStatus'] as String,
+      address: AddressModel.fromJson(json['address'] as Map<String, dynamic>),
+      orderStatus: $enumDecode(_$OrderStatusEnumMap, json['orderStatus']),
       date: DateTime.parse(json['date'] as String),
     );
 
-Map<String, dynamic> _$$_OrdersToJson(_$_Orders instance) => <String, dynamic>{
-      'address': instance.address,
+Map<String, dynamic> _$$OrdersImplToJson(_$OrdersImpl instance) =>
+    <String, dynamic>{
+      'uid': instance.uid,
       'products': instance.products,
       'total': instance.total,
       'orderId': instance.orderId,
-      'orderStatus': instance.orderStatus,
+      'address': instance.address,
+      'orderStatus': _$OrderStatusEnumMap[instance.orderStatus]!,
       'date': instance.date.toIso8601String(),
     };
+
+const _$OrderStatusEnumMap = {
+  OrderStatus.pending: 'pending',
+  OrderStatus.processing: 'processing',
+  OrderStatus.delivered: 'delivered',
+};

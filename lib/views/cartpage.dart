@@ -35,7 +35,7 @@ class _CartPageState extends ConsumerState<CartPage> {
                 padding: EdgeInsets.all(8.0),
                 child: Text("Clear Cart",
                     style: TextStyle(
-                        color: Colors.blue,
+                        color: Colors.orange,
                         fontSize: 15,
                         fontWeight: FontWeight.bold)),
               ))
@@ -80,7 +80,7 @@ class _CartPageState extends ConsumerState<CartPage> {
                               child: Text(
                                 "Back To Shopping",
                                 style: TextStyle(
-                                    color: Colors.blue,
+                                    color: Colors.orange,
                                     fontWeight: FontWeight.bold,
                                     fontSize: 15),
                               ),
