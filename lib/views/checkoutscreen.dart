@@ -4,6 +4,7 @@ import 'package:ephamarcy/controllers/ordercontroller.dart';
 import 'package:ephamarcy/models/address.dart';
 import 'package:ephamarcy/models/user.dart';
 import 'package:ephamarcy/views/add_addresspage.dart';
+import 'package:ephamarcy/views/ordercompletedpage.dart';
 import 'package:ephamarcy/widgets/cart_item_widget.dart';
 import 'package:ephamarcy/widgets/errortext.dart';
 import 'package:ephamarcy/widgets/loader.dart';
@@ -18,7 +19,7 @@ class CheckOutScreen extends ConsumerWidget {
   Widget build(BuildContext context,WidgetRef ref) {
         final currentUser = FirebaseAuth.instance.currentUser;
         final useraddress = ref.watch(getUserAddress);
-        final order=ref.watch(orderControllerProvider.notifier);
+       
         final userProvider = ref.watch(getUserDataProvider(currentUser!.uid));
     return Scaffold(
       appBar: AppBar(
@@ -27,7 +28,8 @@ class CheckOutScreen extends ConsumerWidget {
         elevation: 0,
        
       ),
-      body:useraddress !=null? useraddress.when(data: (address){
+      body: userProvider.when(data: (userData){
+        return userData.cart!.isNotEmpty? useraddress !=null? useraddress.when(data: (address){
         final addressData=AddressModel(city: address.city, address: address.address, houseNo: address.houseNo, zipCode: address.zipCode);
         
 
@@ -183,9 +185,17 @@ class CheckOutScreen extends ConsumerWidget {
                                           height: 50,
                                           width: 400,
                                            child: ElevatedButton(style: ElevatedButton.styleFrom(backgroundColor: Colors.black),onPressed: (){
-                                           
-                                            ref.read(orderControllerProvider.notifier)
-                                            .createOrder(context,currentUser.uid, data.cart!,addressData, data.grandTotal);
+                                           ref.read(getUserDataProvider(currentUser!.uid))
+                                           .whenData((value) {
+                                             return ref.read(orderControllerProvider.notifier)
+                                            .createOrder(context,currentUser.uid, value,addressData, data.grandTotal)
+                                            .then((value){
+                                             
+                                              Navigator.push(context, MaterialPageRoute(builder: (context)=>const OrderCompletedPage()));
+                                                data.cart!.clear();
+                                            }  );
+                                           });
+                                            
                                          
                                             
                                            
@@ -205,7 +215,8 @@ class CheckOutScreen extends ConsumerWidget {
         );
         
 
-      }, error: (error,stackTrace)=>ErrorText(error: error.toString()), loading: ()=>const Loader()):const Text("Your address is empty please make sure you add an addrress to continue",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),),
+      }, error: (error,stackTrace)=>ErrorText(error: error.toString()), loading: ()=>const Loader()):const Center(child: const Text("Your address is empty please make sure you add an addrress to continue",style: TextStyle(color: Colors.black,fontSize: 15,fontWeight: FontWeight.bold),)):const Text("You cannot place an order on empty items",style: TextStyle(color: Colors.black,fontSize: 18,fontWeight: FontWeight.w400),);
+      }, error:(error,stackTrace)=>ErrorText(error: error.toString()), loading: ()=>const Loader())
 
     );
   }

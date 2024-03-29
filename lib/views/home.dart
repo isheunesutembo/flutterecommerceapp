@@ -1,13 +1,8 @@
-import 'package:ephamarcy/controllers/cartcontroller.dart';
 import 'package:ephamarcy/views/cartpage.dart';
 import 'package:ephamarcy/views/categoriespage.dart';
-
 import 'package:ephamarcy/views/mainpage.dart';
 import 'package:ephamarcy/views/productwishlistpage.dart';
 import 'package:ephamarcy/views/settings.dart';
-import 'package:ephamarcy/widgets/categories_widgets.dart';
-
-import 'package:ephamarcy/widgets/products_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -29,13 +24,13 @@ class _HomeState extends ConsumerState<Home> {
   List<Widget> pages = [
     const MainPage(),
     const CategoriesPage(),
-    ProductsWishListPage(),
-    CartPage(),
+    const ProductsWishListPage(),
+    const CartPage(),
     SettingsPage()
   ];
   @override
   Widget build(BuildContext context) {
-    final cart = ref.watch(cartControllerProvider.notifier);
+    
 
     return Scaffold(
         bottomNavigationBar: BottomNavigationBar(

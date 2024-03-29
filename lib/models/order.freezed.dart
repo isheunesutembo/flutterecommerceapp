@@ -185,7 +185,8 @@ class __$$OrdersImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$OrdersImpl implements _Orders {
   _$OrdersImpl(
       {this.uid,

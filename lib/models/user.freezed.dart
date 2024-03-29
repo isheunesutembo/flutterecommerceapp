@@ -27,6 +27,7 @@ mixin _$UserModel {
   String? get address => throw _privateConstructorUsedError;
   String? get profileImage => throw _privateConstructorUsedError;
   List<CartItem>? get cart => throw _privateConstructorUsedError;
+  List<Orders>? get orders => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -46,7 +47,8 @@ abstract class $UserModelCopyWith<$Res> {
       String? city,
       String? address,
       String? profileImage,
-      List<CartItem>? cart});
+      List<CartItem>? cart,
+      List<Orders>? orders});
 }
 
 /// @nodoc
@@ -69,6 +71,7 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
     Object? address = freezed,
     Object? profileImage = freezed,
     Object? cart = freezed,
+    Object? orders = freezed,
   }) {
     return _then(_value.copyWith(
       uid: null == uid
@@ -99,6 +102,10 @@ class _$UserModelCopyWithImpl<$Res, $Val extends UserModel>
           ? _value.cart
           : cart // ignore: cast_nullable_to_non_nullable
               as List<CartItem>?,
+      orders: freezed == orders
+          ? _value.orders
+          : orders // ignore: cast_nullable_to_non_nullable
+              as List<Orders>?,
     ) as $Val);
   }
 }
@@ -117,7 +124,8 @@ abstract class _$$CartImplCopyWith<$Res> implements $UserModelCopyWith<$Res> {
       String? city,
       String? address,
       String? profileImage,
-      List<CartItem>? cart});
+      List<CartItem>? cart,
+      List<Orders>? orders});
 }
 
 /// @nodoc
@@ -137,6 +145,7 @@ class __$$CartImplCopyWithImpl<$Res>
     Object? address = freezed,
     Object? profileImage = freezed,
     Object? cart = freezed,
+    Object? orders = freezed,
   }) {
     return _then(_$CartImpl(
       uid: null == uid
@@ -167,6 +176,10 @@ class __$$CartImplCopyWithImpl<$Res>
           ? _value._cart
           : cart // ignore: cast_nullable_to_non_nullable
               as List<CartItem>?,
+      orders: freezed == orders
+          ? _value._orders
+          : orders // ignore: cast_nullable_to_non_nullable
+              as List<Orders>?,
     ));
   }
 }
@@ -181,8 +194,10 @@ class _$CartImpl with DiagnosticableTreeMixin implements _Cart {
       this.city,
       this.address,
       this.profileImage,
-      final List<CartItem>? cart})
-      : _cart = cart;
+      final List<CartItem>? cart,
+      final List<Orders>? orders})
+      : _cart = cart,
+        _orders = orders;
 
   factory _$CartImpl.fromJson(Map<String, dynamic> json) =>
       _$$CartImplFromJson(json);
@@ -209,9 +224,19 @@ class _$CartImpl with DiagnosticableTreeMixin implements _Cart {
     return EqualUnmodifiableListView(value);
   }
 
+  final List<Orders>? _orders;
+  @override
+  List<Orders>? get orders {
+    final value = _orders;
+    if (value == null) return null;
+    if (_orders is EqualUnmodifiableListView) return _orders;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
   @override
   String toString({DiagnosticLevel minLevel = DiagnosticLevel.info}) {
-    return 'UserModel(uid: $uid, firstname: $firstname, lastname: $lastname, city: $city, address: $address, profileImage: $profileImage, cart: $cart)';
+    return 'UserModel(uid: $uid, firstname: $firstname, lastname: $lastname, city: $city, address: $address, profileImage: $profileImage, cart: $cart, orders: $orders)';
   }
 
   @override
@@ -225,7 +250,8 @@ class _$CartImpl with DiagnosticableTreeMixin implements _Cart {
       ..add(DiagnosticsProperty('city', city))
       ..add(DiagnosticsProperty('address', address))
       ..add(DiagnosticsProperty('profileImage', profileImage))
-      ..add(DiagnosticsProperty('cart', cart));
+      ..add(DiagnosticsProperty('cart', cart))
+      ..add(DiagnosticsProperty('orders', orders));
   }
 
   @override
@@ -242,13 +268,22 @@ class _$CartImpl with DiagnosticableTreeMixin implements _Cart {
             (identical(other.address, address) || other.address == address) &&
             (identical(other.profileImage, profileImage) ||
                 other.profileImage == profileImage) &&
-            const DeepCollectionEquality().equals(other._cart, _cart));
+            const DeepCollectionEquality().equals(other._cart, _cart) &&
+            const DeepCollectionEquality().equals(other._orders, _orders));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, uid, firstname, lastname, city,
-      address, profileImage, const DeepCollectionEquality().hash(_cart));
+  int get hashCode => Object.hash(
+      runtimeType,
+      uid,
+      firstname,
+      lastname,
+      city,
+      address,
+      profileImage,
+      const DeepCollectionEquality().hash(_cart),
+      const DeepCollectionEquality().hash(_orders));
 
   @JsonKey(ignore: true)
   @override
@@ -272,7 +307,8 @@ abstract class _Cart implements UserModel {
       final String? city,
       final String? address,
       final String? profileImage,
-      final List<CartItem>? cart}) = _$CartImpl;
+      final List<CartItem>? cart,
+      final List<Orders>? orders}) = _$CartImpl;
 
   factory _Cart.fromJson(Map<String, dynamic> json) = _$CartImpl.fromJson;
 
@@ -290,6 +326,8 @@ abstract class _Cart implements UserModel {
   String? get profileImage;
   @override
   List<CartItem>? get cart;
+  @override
+  List<Orders>? get orders;
   @override
   @JsonKey(ignore: true)
   _$$CartImplCopyWith<_$CartImpl> get copyWith =>

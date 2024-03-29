@@ -1,6 +1,7 @@
 
 import 'package:ephamarcy/controllers/authcontroller.dart';
 import 'package:ephamarcy/views/addresspage.dart';
+import 'package:ephamarcy/views/orderstatuspage.dart';
 import 'package:ephamarcy/views/profile.dart';
 import 'package:ephamarcy/views/signin.dart';
 import 'package:ephamarcy/widgets/errortext.dart';
@@ -122,18 +123,23 @@ class SettingsPage extends ConsumerWidget {
                 ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: ListTile(
-                    leading: const Text(
-                      "Track Order Status ",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    trailing: Image.asset(
-                      "assets/icon/rightarrow.png",
-                      height: 20,
-                      width: 20,
+                  child: GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const OrderStatusPage()));
+                    },
+                    child: ListTile(
+                      leading: const Text(
+                        "Track Order Status ",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      trailing: Image.asset(
+                        "assets/icon/rightarrow.png",
+                        height: 20,
+                        width: 20,
+                      ),
                     ),
                   ),
                 ),

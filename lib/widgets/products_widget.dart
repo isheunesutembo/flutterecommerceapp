@@ -3,7 +3,6 @@ import 'package:ephamarcy/controllers/authcontroller.dart';
 import 'package:ephamarcy/controllers/cartcontroller.dart';
 import 'package:ephamarcy/controllers/productcontroller.dart';
 import 'package:ephamarcy/controllers/productwishlistcontroller.dart';
-import 'package:ephamarcy/core/utils.dart';
 import 'package:ephamarcy/views/productdetails.dart';
 import 'package:ephamarcy/widgets/errortext.dart';
 import 'package:ephamarcy/widgets/loader.dart';

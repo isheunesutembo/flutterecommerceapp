@@ -8,6 +8,7 @@ part 'order.freezed.dart';
 part 'order.g.dart';
 @freezed
 abstract class Orders with _$Orders {
+    @JsonSerializable(explicitToJson: true)
   factory Orders(
       { String? uid,
       required List<CartItem> products,

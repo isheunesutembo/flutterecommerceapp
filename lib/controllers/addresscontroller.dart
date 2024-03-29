@@ -3,8 +3,6 @@ import 'package:ephamarcy/models/address.dart';
 import 'package:ephamarcy/services/addressservice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-
 final addressContollerProvider =
     StateNotifierProvider<AddressController, bool>((ref) {
   final addressService = ref.watch(addressServiceProvider);

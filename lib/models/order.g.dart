@@ -21,10 +21,10 @@ _$OrdersImpl _$$OrdersImplFromJson(Map<String, dynamic> json) => _$OrdersImpl(
 Map<String, dynamic> _$$OrdersImplToJson(_$OrdersImpl instance) =>
     <String, dynamic>{
       'uid': instance.uid,
-      'products': instance.products,
+      'products': instance.products.map((e) => e.toJson()).toList(),
       'total': instance.total,
       'orderId': instance.orderId,
-      'address': instance.address,
+      'address': instance.address.toJson(),
       'orderStatus': _$OrderStatusEnumMap[instance.orderStatus]!,
       'date': instance.date.toIso8601String(),
     };

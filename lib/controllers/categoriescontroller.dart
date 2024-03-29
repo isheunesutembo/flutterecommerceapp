@@ -1,11 +1,6 @@
-
-
 import 'package:ephamarcy/models/categories.dart';
-import 'package:ephamarcy/providers/firebaseproviders/firebaseproviders.dart';
 import 'package:ephamarcy/services/categoriesservice.dart';
 import 'package:ephamarcy/services/firebasestorageservice.dart';
-
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final categoriesProvider=StreamProvider((ref){

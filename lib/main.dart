@@ -1,9 +1,9 @@
 import 'package:ephamarcy/apikeys/apikey.dart';
 import 'package:ephamarcy/controllers/authcontroller.dart';
-import 'package:ephamarcy/firebase_options.dart';
 import 'package:ephamarcy/models/product.dart';
 import 'package:ephamarcy/models/user.dart';
 import 'package:ephamarcy/router.dart';
+import 'package:ephamarcy/services/localservice/productwisahlist.dart';
 import 'package:ephamarcy/widgets/errortext.dart';
 import 'package:ephamarcy/widgets/loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -20,7 +20,7 @@ WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await Hive.initFlutter();
   Hive.registerAdapter(ProductAdapter());
-  await Hive.openBox<Product>('products_wishlist');
+  await ProductWishListRepository.openBox();
   Stripe.publishableKey = APIKey.PUBLISHABLEkEY;
   await Stripe.instance.applySettings();
 

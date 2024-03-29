@@ -16,6 +16,9 @@ _$CartImpl _$$CartImplFromJson(Map<String, dynamic> json) => _$CartImpl(
       cart: (json['cart'] as List<dynamic>?)
           ?.map((e) => CartItem.fromJson(e as Map<String, dynamic>))
           .toList(),
+      orders: (json['orders'] as List<dynamic>?)
+          ?.map((e) => Orders.fromJson(e as Map<String, dynamic>))
+          .toList(),
     );
 
 Map<String, dynamic> _$$CartImplToJson(_$CartImpl instance) =>
@@ -27,4 +30,5 @@ Map<String, dynamic> _$$CartImplToJson(_$CartImpl instance) =>
       'address': instance.address,
       'profileImage': instance.profileImage,
       'cart': instance.cart,
+      'orders': instance.orders,
     };
