@@ -1,11 +1,9 @@
 import 'package:ephamarcy/controllers/authcontroller.dart';
-import 'package:ephamarcy/controllers/cartcontroller.dart';
 import 'package:ephamarcy/views/cartpage.dart';
 import 'package:ephamarcy/widgets/categories_widgets.dart';
 import 'package:ephamarcy/widgets/errortext.dart';
 import 'package:ephamarcy/widgets/loader.dart';
 import 'package:ephamarcy/widgets/products_widget.dart';
-import 'package:ephamarcy/widgets/searchdelegate.dart';
 import 'package:ephamarcy/widgets/searchwidget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -17,8 +15,7 @@ class MainPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentUser = FirebaseAuth.instance.currentUser;
-    double height = MediaQuery.of(context).size.height;
-    final cart = ref.watch(cartControllerProvider.notifier);
+   
 
     final userData = ref.watch(getUserDataProvider(currentUser!.uid));
     return  userData.when(data: (data){
@@ -57,8 +54,9 @@ class MainPage extends ConsumerWidget {
                 
                 
           ),
+          
         
-        ]),
+        ],automaticallyImplyLeading: false,),
         body:const SingleChildScrollView(
           physics: BouncingScrollPhysics(),
           child: Column(

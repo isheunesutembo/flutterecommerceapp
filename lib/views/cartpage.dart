@@ -26,6 +26,7 @@ class _CartPageState extends ConsumerState<CartPage> {
     return Scaffold(
       bottomNavigationBar: const CheckOutBottomNav(),
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         actions: [
           GestureDetector(
               onTap: () {

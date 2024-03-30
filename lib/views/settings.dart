@@ -3,7 +3,6 @@ import 'package:ephamarcy/controllers/authcontroller.dart';
 import 'package:ephamarcy/views/addresspage.dart';
 import 'package:ephamarcy/views/orderstatuspage.dart';
 import 'package:ephamarcy/views/profile.dart';
-import 'package:ephamarcy/views/signin.dart';
 import 'package:ephamarcy/widgets/errortext.dart';
 import 'package:ephamarcy/widgets/loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -143,26 +142,7 @@ class SettingsPage extends ConsumerWidget {
                     ),
                   ),
                 ),
-                const Divider(
-                  thickness: 2,
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ListTile(
-                    leading: const Text(
-                      "History Orders ",
-                      style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold),
-                    ),
-                    trailing: Image.asset(
-                      "assets/icon/rightarrow.png",
-                      height: 20,
-                      width: 20,
-                    ),
-                  ),
-                ),
+               
                 const Divider(
                   thickness: 2,
                 ),

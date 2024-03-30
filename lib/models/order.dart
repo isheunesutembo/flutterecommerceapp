@@ -1,4 +1,4 @@
-import 'package:ephamarcy/core/orderenum.dart';
+
 import 'package:ephamarcy/models/address.dart';
 import 'package:ephamarcy/models/cartitem.dart';
 import 'package:ephamarcy/models/product.dart';
@@ -15,7 +15,9 @@ abstract class Orders with _$Orders {
       required double total,
       required String orderId,
       required AddressModel address,
-      required OrderStatus orderStatus,
+      bool? isAccepted,
+      bool? isDelivered,
+      bool? isCancelled,
       required DateTime date}) = _Orders;
   factory Orders.fromJson(Map<String, dynamic> json) => _$OrdersFromJson(json);
 }

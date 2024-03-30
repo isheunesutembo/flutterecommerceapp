@@ -25,7 +25,9 @@ mixin _$Orders {
   double get total => throw _privateConstructorUsedError;
   String get orderId => throw _privateConstructorUsedError;
   AddressModel get address => throw _privateConstructorUsedError;
-  OrderStatus get orderStatus => throw _privateConstructorUsedError;
+  bool? get isAccepted => throw _privateConstructorUsedError;
+  bool? get isDelivered => throw _privateConstructorUsedError;
+  bool? get isCancelled => throw _privateConstructorUsedError;
   DateTime get date => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -44,7 +46,9 @@ abstract class $OrdersCopyWith<$Res> {
       double total,
       String orderId,
       AddressModel address,
-      OrderStatus orderStatus,
+      bool? isAccepted,
+      bool? isDelivered,
+      bool? isCancelled,
       DateTime date});
 
   $AddressModelCopyWith<$Res> get address;
@@ -68,7 +72,9 @@ class _$OrdersCopyWithImpl<$Res, $Val extends Orders>
     Object? total = null,
     Object? orderId = null,
     Object? address = null,
-    Object? orderStatus = null,
+    Object? isAccepted = freezed,
+    Object? isDelivered = freezed,
+    Object? isCancelled = freezed,
     Object? date = null,
   }) {
     return _then(_value.copyWith(
@@ -92,10 +98,18 @@ class _$OrdersCopyWithImpl<$Res, $Val extends Orders>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as AddressModel,
-      orderStatus: null == orderStatus
-          ? _value.orderStatus
-          : orderStatus // ignore: cast_nullable_to_non_nullable
-              as OrderStatus,
+      isAccepted: freezed == isAccepted
+          ? _value.isAccepted
+          : isAccepted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isDelivered: freezed == isDelivered
+          ? _value.isDelivered
+          : isDelivered // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isCancelled: freezed == isCancelled
+          ? _value.isCancelled
+          : isCancelled // ignore: cast_nullable_to_non_nullable
+              as bool?,
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -125,7 +139,9 @@ abstract class _$$OrdersImplCopyWith<$Res> implements $OrdersCopyWith<$Res> {
       double total,
       String orderId,
       AddressModel address,
-      OrderStatus orderStatus,
+      bool? isAccepted,
+      bool? isDelivered,
+      bool? isCancelled,
       DateTime date});
 
   @override
@@ -148,7 +164,9 @@ class __$$OrdersImplCopyWithImpl<$Res>
     Object? total = null,
     Object? orderId = null,
     Object? address = null,
-    Object? orderStatus = null,
+    Object? isAccepted = freezed,
+    Object? isDelivered = freezed,
+    Object? isCancelled = freezed,
     Object? date = null,
   }) {
     return _then(_$OrdersImpl(
@@ -172,10 +190,18 @@ class __$$OrdersImplCopyWithImpl<$Res>
           ? _value.address
           : address // ignore: cast_nullable_to_non_nullable
               as AddressModel,
-      orderStatus: null == orderStatus
-          ? _value.orderStatus
-          : orderStatus // ignore: cast_nullable_to_non_nullable
-              as OrderStatus,
+      isAccepted: freezed == isAccepted
+          ? _value.isAccepted
+          : isAccepted // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isDelivered: freezed == isDelivered
+          ? _value.isDelivered
+          : isDelivered // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      isCancelled: freezed == isCancelled
+          ? _value.isCancelled
+          : isCancelled // ignore: cast_nullable_to_non_nullable
+              as bool?,
       date: null == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
@@ -194,7 +220,9 @@ class _$OrdersImpl implements _Orders {
       required this.total,
       required this.orderId,
       required this.address,
-      required this.orderStatus,
+      this.isAccepted,
+      this.isDelivered,
+      this.isCancelled,
       required this.date})
       : _products = products;
 
@@ -218,13 +246,17 @@ class _$OrdersImpl implements _Orders {
   @override
   final AddressModel address;
   @override
-  final OrderStatus orderStatus;
+  final bool? isAccepted;
+  @override
+  final bool? isDelivered;
+  @override
+  final bool? isCancelled;
   @override
   final DateTime date;
 
   @override
   String toString() {
-    return 'Orders(uid: $uid, products: $products, total: $total, orderId: $orderId, address: $address, orderStatus: $orderStatus, date: $date)';
+    return 'Orders(uid: $uid, products: $products, total: $total, orderId: $orderId, address: $address, isAccepted: $isAccepted, isDelivered: $isDelivered, isCancelled: $isCancelled, date: $date)';
   }
 
   @override
@@ -237,8 +269,12 @@ class _$OrdersImpl implements _Orders {
             (identical(other.total, total) || other.total == total) &&
             (identical(other.orderId, orderId) || other.orderId == orderId) &&
             (identical(other.address, address) || other.address == address) &&
-            (identical(other.orderStatus, orderStatus) ||
-                other.orderStatus == orderStatus) &&
+            (identical(other.isAccepted, isAccepted) ||
+                other.isAccepted == isAccepted) &&
+            (identical(other.isDelivered, isDelivered) ||
+                other.isDelivered == isDelivered) &&
+            (identical(other.isCancelled, isCancelled) ||
+                other.isCancelled == isCancelled) &&
             (identical(other.date, date) || other.date == date));
   }
 
@@ -251,7 +287,9 @@ class _$OrdersImpl implements _Orders {
       total,
       orderId,
       address,
-      orderStatus,
+      isAccepted,
+      isDelivered,
+      isCancelled,
       date);
 
   @JsonKey(ignore: true)
@@ -275,7 +313,9 @@ abstract class _Orders implements Orders {
       required final double total,
       required final String orderId,
       required final AddressModel address,
-      required final OrderStatus orderStatus,
+      final bool? isAccepted,
+      final bool? isDelivered,
+      final bool? isCancelled,
       required final DateTime date}) = _$OrdersImpl;
 
   factory _Orders.fromJson(Map<String, dynamic> json) = _$OrdersImpl.fromJson;
@@ -291,7 +331,11 @@ abstract class _Orders implements Orders {
   @override
   AddressModel get address;
   @override
-  OrderStatus get orderStatus;
+  bool? get isAccepted;
+  @override
+  bool? get isDelivered;
+  @override
+  bool? get isCancelled;
   @override
   DateTime get date;
   @override

@@ -3,7 +3,6 @@ import 'package:ephamarcy/constants/firebase_constants.dart';
 import 'package:ephamarcy/core/failure.dart';
 import 'package:ephamarcy/models/product.dart';
 import 'package:ephamarcy/providers/firebaseproviders/firebaseproviders.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fpdart/fpdart.dart';
 

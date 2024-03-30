@@ -33,6 +33,7 @@ class _HomeState extends ConsumerState<Home> {
     
 
     return Scaffold(
+      appBar: AppBar(elevation: 0,automaticallyImplyLeading: false,),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.white,
           currentIndex: selectedIndex,

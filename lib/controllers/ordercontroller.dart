@@ -1,4 +1,4 @@
-import 'package:ephamarcy/core/orderenum.dart';
+
 import 'package:ephamarcy/models/address.dart';
 import 'package:ephamarcy/models/order.dart';
 import 'package:ephamarcy/models/user.dart';
@@ -36,7 +36,9 @@ class OrderController extends StateNotifier<bool> {
         orderId: orderId,
         address: address,
         date: DateTime.now(),
-        orderStatus: OrderStatus.pending);
+        isAccepted: false,
+        isCancelled: false,
+        isDelivered: false);
     final res = _orderService.createOrder(order);
     state = false;
     

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:ephamarcy/views/ordercompletedpage.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:ephamarcy/apikeys/apikey.dart';
@@ -10,7 +11,7 @@ class StripePaymentService {
   Future<void> makePayment(BuildContext context, double amount) async {
     try {
       //STEP 1: Create Payment Intent
-      paymentIntent = await createPaymentIntent(amount.toString(), 'USD');
+      paymentIntent = await createPaymentIntent(amount.toString(), 'USD',context);
 
       //STEP 2: Initialize Payment Sheet
       await Stripe.instance
@@ -20,11 +21,16 @@ class StripePaymentService {
                   customFlow: true,
                   paymentIntentClientSecret: paymentIntent![
                       'client_secret'], //Gotten from payment intent
-                  style: ThemeMode.light,
+                  style: ThemeMode.dark,
+                
                   merchantDisplayName: 'Isheunesu',
-                  googlePay:const PaymentSheetGooglePay(merchantCountryCode: "US",testEnv: true),
-                  allowsDelayedPaymentMethods: true))
+                
+                  allowsDelayedPaymentMethods: true,
+                  
+      
+                   ))
           .then((value) {
+           
 
       });
 
@@ -35,7 +41,7 @@ class StripePaymentService {
     }
   }
 
-  createPaymentIntent(String amount, String currency) async {
+  createPaymentIntent(String amount, String currency,BuildContext context) async {
     
     try {
       //Request body
@@ -54,9 +60,10 @@ class StripePaymentService {
         body: body,
       );
       if (response.statusCode == 200) {
+      return json.decode(response.body);
         
       }
-      return json.decode(response.body);
+      
     } catch (err) {
       throw Exception(err.toString());
     }

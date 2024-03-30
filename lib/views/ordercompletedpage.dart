@@ -1,4 +1,4 @@
-import 'package:ephamarcy/views/mainpage.dart';
+import 'package:ephamarcy/views/home.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -8,7 +8,8 @@ class OrderCompletedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(elevation: 0,),
+      appBar: AppBar(elevation: 0,
+      automaticallyImplyLeading: false,),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -21,7 +22,7 @@ class OrderCompletedPage extends StatelessWidget {
             const SizedBox(height: 10,),
             GestureDetector(
               onTap: (){
-                Navigator.push(context, MaterialPageRoute(builder: (context)=>MainPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>Home()));
               },
               child: const Text("Back To Shopping",
               style: TextStyle(color: Colors.orange,fontSize: 15,)),
