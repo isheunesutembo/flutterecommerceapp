@@ -1,6 +1,5 @@
 import 'package:ephamarcy/models/categories.dart';
 import 'package:ephamarcy/services/categoriesservice.dart';
-import 'package:ephamarcy/services/firebasestorageservice.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 final categoriesProvider=StreamProvider((ref){
@@ -11,17 +10,17 @@ final categoriesProvider=StreamProvider((ref){
 
 final categoriesControllerProvider=StateNotifierProvider<CategoriesController,bool>((ref){
   final categoriesService=ref.watch(categoriesServiceProvider);
-  final firebaseStorageServiceProvider=ref.watch(storageServiceProvider);
-  return CategoriesController(categoriesService: categoriesService, ref: ref, firebaseStorageService: firebaseStorageServiceProvider);
+
+  return CategoriesController(categoriesService: categoriesService, ref: ref, );
 });
 class CategoriesController extends StateNotifier<bool>{
 
   final CategoriesService _categoriesSevice;
   final Ref _ref;
-  final FirebaseStorageService _firebaseStorageService;
+
 
   CategoriesController({required CategoriesService categoriesService,
-  required Ref ref ,required FirebaseStorageService firebaseStorageService}):_categoriesSevice=categoriesService,_ref=ref,_firebaseStorageService=firebaseStorageService,super(false);
+  required Ref ref , firebaseStorageService}):_categoriesSevice=categoriesService,_ref=ref,super(false);
 
 
 
