@@ -128,7 +128,7 @@ class SettingsPage extends ConsumerWidget {
                     },
                     child: ListTile(
                       leading: const Text(
-                        "Track Order Status ",
+                        "Track Order",
                         style: TextStyle(
                             color: Colors.black,
                             fontSize: 20,
@@ -142,6 +142,32 @@ class SettingsPage extends ConsumerWidget {
                     ),
                   ),
                 ),
+                                const Divider(
+                  thickness: 2,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GestureDetector(
+                    onTap: (){
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>const OrderStatusPage()));
+                    },
+                    child: ListTile(
+                      leading: const Text(
+                        "Order History",
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                      trailing: Image.asset(
+                        "assets/icon/rightarrow.png",
+                        height: 20,
+                        width: 20,
+                      ),
+                    ),
+                  ),
+                ),
+               
                
                 const Divider(
                   thickness: 2,

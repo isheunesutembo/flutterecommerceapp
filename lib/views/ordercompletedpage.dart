@@ -15,8 +15,9 @@ class OrderCompletedPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+          
             CircleAvatar(child:Image.asset('assets/icon/order.png') ,radius: 80,),
-             const Text("Order placed and is being processed",
+             const Text("Thank you!,Order placed and is being processed",
             style: TextStyle(color: Colors.orange,fontSize: 15,
             fontWeight: FontWeight.bold),),
             const SizedBox(height: 10,),

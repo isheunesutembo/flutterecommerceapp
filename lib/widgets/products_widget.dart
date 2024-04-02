@@ -8,6 +8,7 @@ import 'package:ephamarcy/widgets/errortext.dart';
 import 'package:ephamarcy/widgets/loader.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:get/get.dart';
 
@@ -56,15 +57,17 @@ class Products_Widget extends ConsumerWidget {
                         ),
                         child: Stack(
                           children: [
-                            Positioned(bottom: 0,left: 0,child: GestureDetector(
-                              onTap: (){
-                                propertiesController.addProduct(product, context);
- 
-                              },
-                              child:const Icon(
-                                    Icons.favorite,color: Colors.black,
-                                  ),
-                            )),
+                            Expanded(
+                              child: Positioned(bottom: 0,left: 0,child: GestureDetector(
+                                onTap: (){
+                                  propertiesController.addProduct(product, context);
+                               
+                                },
+                                child:const Icon(
+                                      Icons.favorite,color: Colors.black,
+                                    ),
+                              )),
+                            ),
                             Column(
                               children: [
                                 const SizedBox(

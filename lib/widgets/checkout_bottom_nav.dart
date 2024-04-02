@@ -14,7 +14,7 @@ class CheckOutBottomNav extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    StripePaymentService stripePaymentService = StripePaymentService();
+ 
     final currentUser = FirebaseAuth.instance.currentUser;
     final userProvider = ref.watch(getUserDataProvider(currentUser!.uid));
     return userProvider.when(

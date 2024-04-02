@@ -1,8 +1,5 @@
-
 import 'package:ephamarcy/models/address.dart';
 import 'package:ephamarcy/models/cartitem.dart';
-import 'package:ephamarcy/models/product.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 part 'order.freezed.dart';
 part 'order.g.dart';

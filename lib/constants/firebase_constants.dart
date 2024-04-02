@@ -8,6 +8,7 @@ class FirebaseConstants {
   static const productsCollection = "products";
   static const cartCollection = "cart";
   static const orderCollection="orders";
+    static const paymentsCollection="payments";
   static final currentUser = FirebaseAuth.instance.currentUser;
   final FirebaseAuth _auth = FirebaseAuth.instance;
   static final cartRef = FirebaseFirestore.instance

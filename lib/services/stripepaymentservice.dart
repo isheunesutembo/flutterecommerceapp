@@ -1,41 +1,49 @@
 import 'dart:convert';
-import 'package:ephamarcy/views/ordercompletedpage.dart';
+import 'package:ephamarcy/controllers/paymentcontroller.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart' as http;
 import 'package:ephamarcy/apikeys/apikey.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
-final stripePaymentServiceProvider=Provider((ref) => StripePaymentService());
+final stripeServiceProvider=Provider((ref)=>StripePaymentService(ref: ref));
 class StripePaymentService {
+ final Ref _ref;
+ StripePaymentService({required Ref ref}):_ref=ref;
+  
   Map<String, dynamic>? paymentIntent;
   Future<void> makePayment(BuildContext context, double amount) async {
     try {
       //STEP 1: Create Payment Intent
       paymentIntent = await createPaymentIntent(amount.toString(), 'USD',context);
 
+      
+     
+       
+   
       //STEP 2: Initialize Payment Sheet
       await Stripe.instance
           .initPaymentSheet(
             
               paymentSheetParameters: SetupPaymentSheetParameters(
-                  customFlow: true,
-                  paymentIntentClientSecret: paymentIntent![
-                      'client_secret'], //Gotten from payment intent
-                  style: ThemeMode.dark,
-                
-                  merchantDisplayName: 'Isheunesu',
-                
+                  customFlow: false,
+                  paymentIntentClientSecret: paymentIntent!['client_secret'], 
+                  customerEphemeralKeySecret: paymentIntent!['ephemeralKey'],//Gotten from payment intent
+                  style: ThemeMode.system,
+                  merchantDisplayName: 'Ishe',
+                  customerId:paymentIntent!['customer'] ,
+                  applePay:const PaymentSheetApplePay(merchantCountryCode: 'US',),
+                  googlePay:const PaymentSheetGooglePay(merchantCountryCode: "US",testEnv: true),
                   allowsDelayedPaymentMethods: true,
                   
-      
-                   ))
-          .then((value) {
-           
-
-      });
+                   ));
 
       //STEP 3: Display Payment sheet
-      displayPaymentSheet(context);
+     displayPaymentSheet(context);
+     final currentUser = FirebaseAuth.instance.currentUser;
+              _ref.watch(paymentControllerProvider.notifier)
+             .createPayment(context, paymentIntent!['id'],amount, currentUser!.uid,paymentIntent!["status"]);
+         
     } catch (err) {
       throw Exception(err);
     }
@@ -60,6 +68,16 @@ class StripePaymentService {
         body: body,
       );
       if (response.statusCode == 200) {
+          Map<String, dynamic>? paymentIntent=json.decode(response.body);
+             
+            
+           
+          
+       
+      
+
+      
+       
       return json.decode(response.body);
         
       }
@@ -72,30 +90,13 @@ class StripePaymentService {
   displayPaymentSheet(BuildContext context) async {
     try {
       await Stripe.instance.presentPaymentSheet().then((value) {
-        showDialog(
-        
-            context: context,
-            builder: (_) => const AlertDialog(
-                  content: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Icon(
-                        Icons.check_circle,
-                        color: Colors.green,
-                        size: 100.0,
-                      ),
-                      SizedBox(height: 10.0),
-                      Text("Payment Successful!"),
-                    ],
-                  ),
-                ));
-
-        paymentIntent = null;
+        Stripe.instance.presentPaymentSheet();
+      
       }).onError((error, stackTrace) {
         throw Exception(error);
       });
-    } on StripeException catch (e) {
-      print('Error is:---> $e');
+    } on StripeException catch (error) {
+      
       const AlertDialog(
         content: Column(
           mainAxisSize: MainAxisSize.min,

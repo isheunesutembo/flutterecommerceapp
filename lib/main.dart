@@ -22,7 +22,9 @@ WidgetsFlutterBinding.ensureInitialized();
   Hive.registerAdapter(ProductAdapter());
   await ProductWishListRepository.openBox();
   Stripe.publishableKey = APIKey.PUBLISHABLEkEY;
+  Stripe.merchantIdentifier="Isheunesu";
   await Stripe.instance.applySettings();
+  
 
   runApp(ProviderScope(child: MyApp()));
   }catch(e){

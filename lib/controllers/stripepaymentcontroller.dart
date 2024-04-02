@@ -3,7 +3,7 @@
 import 'package:ephamarcy/services/stripepaymentservice.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-final stripePaymentController=StateNotifierProvider<StripePaymentController,bool>((ref) => StripePaymentController(ref: ref, stripePaymentService: ref.watch(stripePaymentServiceProvider)));
+final stripePaymentController=StateNotifierProvider<StripePaymentController,bool>((ref) => StripePaymentController(ref: ref, stripePaymentService: ref.watch(stripeServiceProvider)));
 class StripePaymentController extends StateNotifier<bool>{
   final Ref _ref;
   final StripePaymentService _stripePaymentService;

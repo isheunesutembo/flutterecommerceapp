@@ -1,9 +1,9 @@
 import 'package:ephamarcy/controllers/addresscontroller.dart';
 import 'package:ephamarcy/controllers/authcontroller.dart';
 import 'package:ephamarcy/controllers/ordercontroller.dart';
+import 'package:ephamarcy/controllers/stripepaymentcontroller.dart';
 import 'package:ephamarcy/models/address.dart';
 import 'package:ephamarcy/models/user.dart';
-import 'package:ephamarcy/services/stripepaymentservice.dart';
 import 'package:ephamarcy/views/add_addresspage.dart';
 import 'package:ephamarcy/views/ordercompletedpage.dart';
 import 'package:ephamarcy/widgets/cart_item_widget.dart';
@@ -18,7 +18,7 @@ class CheckOutScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context,WidgetRef ref) {
-    StripePaymentService stripePaymentService = StripePaymentService();
+
         final currentUser = FirebaseAuth.instance.currentUser;
         final useraddress = ref.watch(getUserAddress);
        
@@ -192,8 +192,14 @@ class CheckOutScreen extends ConsumerWidget {
                                              return ref.read(orderControllerProvider.notifier)
                                             .createOrder(context,currentUser.uid, value,addressData, data.grandTotal)
                                             .then((value){
-                                             stripePaymentService.makePayment(context, data.grandTotal);
-                                               Navigator.push(context, MaterialPageRoute(builder:(context)=>OrderCompletedPage()));
+                                             ref.read(stripePaymentController.notifier).makePayment(context, data.grandTotal)
+                                             .then((value) {
+                                           
+                                              Navigator.push(context, MaterialPageRoute(builder:(context)=>const OrderCompletedPage()));
+                                             });
+                                            
+                                      
+                                            
                                               
                                             }  );
                                            });
