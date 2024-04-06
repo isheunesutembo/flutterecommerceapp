@@ -11,7 +11,8 @@
 <li>Add poducts to cart</li>
 <li>Checkout</li>
 <li>Add ,edit address</li>
-<li>Stripe payments</li>
+<li>Stripe paymentspayment by card , apple pay & google pay)</li>
+<li>Orders (track pending , order history )</li>
 </ol>
 
 ## Getting Started
